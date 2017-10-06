@@ -1,0 +1,115 @@
+{% extends '::frontend.html.twig' %}
+{% block title %}Consulenza{% endblock %}
+  {%  block stylesheets %}
+      {{ parent() }}
+  {%  endblock %}
+{% block bodypage %}
+    <ul class="breadcrumbs">
+        <div class="container">
+            <li>
+                <a title="Go to Home Page" href="{{ path('User_index') }}"><img alt="" src="{{asset('web/bundles/frontend/img/home.png')}}"></a>
+            </li>
+            <li class="home">
+                <span class="red cons">Consulenza</span>
+            </li>
+        </div>
+    </ul>
+    <div class="column_center"></div>
+    {% if (datos.option == 1) %}
+    <div class="container">
+        <div class="grid-1" style="padding:0">
+            <div class="container">
+                <div class="mini_container">
+                <h1 id="cons1" style="text-align:left">Consulenza societaria</h1>
+                    <p id="consdesc1a">Lo studio garantisce la necessaria consulenza societaria e l’adeguata assistenza nella costituzione di nuove società, nella revisione dei patti sociali e delle clausole statutarie, nell’elaborazione del bilancio di esercizio ed eventuale nota integrativa e dei bilanci infrannuali, nella predisposizione di tutte le tipologie di contratti, nelle operazioni di fusione, scissione, trasformazione, conferimento e altre operazioni straordinarie, nelle trattative tra soci e tra società diverse, nell’esecuzione di due diligence per acquisizione di aziende o rami d’azienda, nella creazione o revisione di accordi parasociali, nella liquidazione e nello scioglimento di società, nell’istituzione e gestione di trust e fiduciarie, nell’istituzione di holding e gruppi societari, nelle procedure fallimentari e concorsuali in genere.</p>
+                </div>    
+            </div></br>
+            <div class="container">
+                <div class="mini_container">
+                <h1 class="ofert" style="text-align:left">Servizi offerti</h1>
+                    <p id="ofert1">- Assistenza alla costituzione e nelle modifiche dei regolamenti sociali.</p>
+                    <p id="ofert2">- Assistenza alla contrattualistica societaria.</p>
+                    <p id="ofert3">- Assistenza alle trattative societarie.</p>
+                    <p id="ofert4">- Esecuzione operazioni straordinarie (fusioni, scissioni, trasformazioni, conferimenti).</p>
+                    <p id="ofert5">- Consulenza negli accordi parasociali.</p>
+                    <p id="ofert6">- Assistenza nella liquidazione e scioglimento societari.</p>
+                    <p id="ofert7">- Consulenza nell'istituzione di trust e fiduciarie.</p>
+                    <p id="ofert8">- Consulenza nella creazione di holding e di gruppi societari.</p>
+                </div>    
+            </div>
+        </div>
+    </div>
+    {% elseif (datos.option == 2) %}
+    <div class="container">
+        <div class="grid-1" style="padding:0">
+            <div class="container">
+                <div class="mini_container">
+                <h1 id="cons2" style="text-align:left">Consulenza tributaria</h1>
+                    <p id="consdesc2a">Questa area racchiude una serie di attività tra cui si possono citare la consulenza nella programmazione fiscale in materia di imposte dirette e indirette, nell’elaborazione di dichiarazioni fiscali (mod. Unico, dichiarazione Irap e Studi di Settore), nell’accertamento e nei controlli da parte dell’Amministrazione Finanziaria e più in generale nel contenzioso tributario, nel condono fiscale e nelle varie forme di sanatorie, nell’informazione sulle novità fiscali, nell’analisi delle differenze di tassazione tra paese d’origine e paesi esteri, nell’analisi delle convenzioni internazionali.</p>
+                </div>    
+            </div></br>
+            <div class="container">
+                <div class="mini_container">
+                <h1 class="ofert" style="text-align:left">Servizi offerti</h1>
+                    <p id="ofert9">- Assistenza alle dichiarazioni fiscali e agli studi di settore.</p>
+                    <p id="ofert10">- Assistenza e informazione per le novità nelle imposte dirette e indirette.</p>
+                    <p id="ofert11">- Assistenza nei contenziosi tributari.</p>
+                    <p id="ofert12">- Consulenza per condoni e sanatorie.</p>
+                    <p id="ofert13">- Analisi delle differenze di tassazione tra paese d’origine e paesi esteri.</p>
+                    <p id="ofert14">- Analisi delle convenzioni internazionali.</p>
+                </div>    
+            </div>
+        </div>
+    </div>
+    {% elseif (datos.option == 3) %}
+    <div class="container">
+        <div class="grid-1" style="padding:0">
+            <div class="container">
+                <div class="mini_container">
+                <h1 id="cons3" style="text-align:left">Consulenza finanziaria all'azienda</h1>
+                    <p id="consdesc3a">Questa area può comprendere una serie di attività tra cui a titolo esemplificativo si richiamano l’assistenza nell’ottenimento di fidi e finanziamenti dagli istituti di credito e dalle società di leasing, nell’esame degli strumenti alternativi di finanziamento, nell’elaborazione di piani finanziari e di piani di sostenibilità degli investimenti, nella gestione finanziaria aziendale di routine (con strumenti di rendiconto finanziario, di gestione dei flussi finanziari, ecc...), nella gestione dei rapporti con gli istituti di credito e nell’ottenimento di riduzioni di costi per commissioni ed oneri finanziari, nella pianificazione della strategia finanziaria.</p>
+                </div>    
+            </div></br>
+            <div class="container">
+                <div class="mini_container">
+                <h1 class="ofert" style="text-align:left">Servizi offerti</h1>
+                    <p id="ofert15">- Consulenza nell’ottenimento di fidi e finanziamenti dagli istituti di credito.</p>
+                    <p id="ofert16">- Esame strumenti alternativi di finanziamento presenti sul mercato.</p>
+                    <p id="ofert17">- Elaborazione di piani finanziari e sostenibilità degli investimenti.</p>
+                    <p id="ofert18">- Pianificazione della strategia finanziaria, diagnosi e controllo della struttura finanziaria aziendale.</p>
+                    <p id="ofert19">- Finanziamento progetti.</p>
+                </div>    
+            </div>
+        </div>
+    </div>
+    {% elseif (datos.option == 4) %}
+    <div class="container">
+        <div class="grid-1" style="padding:0">
+            <div class="container">
+                <div class="mini_container">
+                <h1 id="cons4" style="text-align:left">Revisione contabile-legale e consulenza contabile</h1>
+                    <p id="consdesc4a">Questa area comprende l’attività di revisione contabile e legale tipica del collegio sindacale o organo di revisione e controllo, l’attività di vigilanza ex. D.L. 231/2001, pareri sulla correttezza delle scritture contabili e la consulenza sull’impianto di un sistema di contabilità (individuazione del software adeguato, creazione piano dei conti e impostazione delle procedure contabili).</p>
+                </div>    
+            </div></br>
+            <div class="container">
+                <div class="mini_container">
+                <h1 class="ofert" style="text-align:left">Servizi offerti</h1>
+                    <p id="ofert20">- Analisi e revisione dei bilanci.</p>
+                    <p id="ofert21">- Revisione dei conti e delle procedure.</p>
+                    <p id="ofert22">- Ruolo di sindaci e revisori.</p>
+                    <p id="ofert23">- Incarico di vigilanza ex D.L. 231/2001.</p>
+                    <p id="ofert24">- Stesura di bilanci di esercizio.</p>
+                    <p id="ofert25">- Stesura note integrative.</p>
+                </div>    
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{asset('web/bundles/frontend/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript">
+        var other_url = '../../../../';
+    </script>
+{% endblock %}

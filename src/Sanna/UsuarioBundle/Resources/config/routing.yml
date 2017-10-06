@@ -1,0 +1,49 @@
+login:
+    path:     /login
+    defaults: { _controller: UsuarioBundle:Default:login }
+
+login_check:
+    path: /login_check
+
+User_logout:
+    path: /logout
+
+register_user:
+    path: /create_user/
+    defaults: { _controller: UsuarioBundle:Usuario:registerUser }
+
+edit_profile:
+    path: /edit_profile/{iduser}
+    defaults: { _controller: UsuarioBundle:Usuario:editProfileUser }
+
+edit_user:
+    path: /edit_user/{iduser}
+    defaults: { _controller: UsuarioBundle:Usuario:editUser }
+
+list_all_user:
+    path: /list_all_user
+    defaults: { _controller: UsuarioBundle:Usuario:listAllUser }
+
+delete_user:
+    path: /delete_user/{id}
+    defaults: { _controller: UsuarioBundle:Usuario:deleteUser }
+
+calendar:
+    path: /calendar/
+    defaults: { _controller: UsuarioBundle:Usuario:calendar }
+
+events:
+    path: /getEvents/
+    defaults: { _controller: UsuarioBundle:Usuario:getEvents }
+
+setEvent:
+    path: /setEvent/
+    defaults: { _controller: UsuarioBundle:Usuario:setEvent }
+
+delEvents:
+    path: /delEvents/
+    defaults: { _controller: UsuarioBundle:Usuario:delEvents }
+
+sendEvent:
+    path: /sendEvent/
+    defaults: { _controller: UsuarioBundle:Usuario:sendEvent }

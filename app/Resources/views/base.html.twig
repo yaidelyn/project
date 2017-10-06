@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %} | Commercial Sanna</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon"  href="{{ asset('bundles/backend/favicon.ico')}}" />
+    {% block stylesheets %}
+    {% endblock %}
+    {% block javascripts %}{% endblock %}
+</head>
+<body>
+<!-- HEADER -->
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<header class="navbar clearfix" id="header">
+    <div class="container">
+        <div class="navbar-brand">
+            <a href="{{ path('User_index') }}">
+                <img src="{{asset('bundles/common/img')}}/logo/logo.png" alt="Cloud Admin Logo" class="img-responsive" height="30" width="120">
+            </a>
+            <!-- /COMPANY LOGO -->
+            <!-- TEAM STATUS FOR MOBILE -->
+            <div class="visible-xs">
+                <a href="#" class="team-status-toggle switcher btn dropdown-toggle">
+                    <i class="fa fa-users"></i>
+                </a>
+            </div>
+            <!-- /TEAM STATUS FOR MOBILE -->
+            <!-- SIDEBAR COLLAPSE -->
+            <div id="sidebar-collapse" class="sidebar-collapse btn">
+                <i class="fa fa-bars"
+                   data-icon1="fa fa-bars"
+                   data-icon2="fa fa-bars"></i>
+            </div>
+            <!-- /SIDEBAR COLLAPSE -->
+        </div>
+        <!-- NAVBAR LEFT -->
+        <ul class="nav navbar-nav pull-left hidden-xs" id="navbar-left">
+            {#<li class="dropdown">#}
+                {#<a href="#" class="team-status-toggle dropdown-toggle tip-bottom" data-toggle="tooltip" title="Toggle Team View">#}
+                    {#<i class="fa fa-users"></i>#}
+                    {#<span class="name">Team Status</span>#}
+                    {#<i class="fa fa-angle-down"></i>#}
+                {#</a>#}
+            {#</li>#}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-cog"></i>
+                    <span class="name">Skins</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu skins">
+                    <li class="dropdown-title">
+                        <span><i class="fa fa-leaf"></i> Theme Skins</span>
+                    </li>
+                    <li><a href="#" data-skin="default">Subtle (default)</a></li>
+                    <li><a href="#" data-skin="night">Night</a></li>
+                    <li><a href="#" data-skin="earth">Earth</a></li>
+                    <li><a href="#" data-skin="utopia">Utopia</a></li>
+                    <li><a href="#" data-skin="nature">Nature</a></li>
+                    <li><a href="#" data-skin="graphite">Graphite</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+            <li class="dropdown user" id="header-user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {% if (result.data.user.avatar != '') %}
+                        <img alt="" src="{{asset('bundles/common/img')}}/avatars/{{ result.data.user.avatar }}">
+                    {% elseif (result.data.user.gender == 'M') %}
+                        <img alt="" src="{{asset('bundles/common/img')}}/avatars/guy.png">
+                    {% else %}
+                        <img alt="" src="{{asset('bundles/common/img')}}/avatars/girl.png">
+                    {% endif %}
+                    <span class="username">{{ result.data.user.name }}</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a id="{{ result.data.user.id }}" href="{{ path('edit_user',{iduser:result.data.user.id}) }}"><i class="fa fa-user"></i> My Profile</a></li>
+                    <!--li><a href="#"><i class="fa fa-cog"></i> Account Settings</a></li>
+                    <li><a href="#"><i class="fa fa-eye"></i> Privacy Settings</a></li-->
+                    <li><a href="{{path('User_logout')}}"><i class="fa fa-power-off"></i> Log Out</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+{% endif %}
+<!-- PAGE -->
+<section id="page">
+<div id="mask"></div>
+    <!-- SIDEBAR -->
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-menu nav-collapse">
+            <div class="divide-20"></div>
+            <!-- SEARCH BAR -->
+            <div id="search-bar">
+                <input class="search" type="text" placeholder="Search"><i class="fa fa-search search-icon"></i>
+            </div>
+            <!-- /SEARCH BAR -->
+            <!-- SIDEBAR QUICK-LAUNCH -->
+            <!-- <div id="quicklaunch">
+            <!-- /SIDEBAR QUICK-LAUNCH -->
+            <!-- SIDEBAR MENU -->
+            <ul>
+                <li class="active">
+                    <a href="{{ path('Base_site') }}">
+                        <i class="fa fa-tachometer fa-fw"></i> <span class="menu-text">Dashboard</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+				{% if is_granted('ROLE_ADMIN') %}
+                <li><a class="" href="{{path('inbox_email')}}"><i class="fa fa-envelope-o fa-fw"></i> 
+					<span class="menu-text">Posta in Arrivo</span></a>
+				</li>
+				{% endif %}
+                <li>
+                    <a class="" href="{{ path('calendar') }}"><i class="fa fa-calendar fa-fw"></i>
+								<span class="menu-text">Calendario
+								</span>
+                    </a>
+                </li>
+				{% if is_granted('ROLE_ADMIN') %}
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-bookmark-o fa-fw"></i> <span class="menu-text">Gestioni User</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="{{ path('register_user') }}"><span class="sub-menu-text">Registrazione nuovo utente</span></a></li>
+                        <li><a class="" href="{{ path('list_all_user') }}"><span class="sub-menu-text">Lista utenti</span></a></li>
+                    </ul>
+                </li>
+				{% endif %}
+                <li class="has-sub">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-file-text fa-fw"></i> <span class="menu-text">Gestioni File</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li>
+							<a class="" href="{{ path('upload_file') }}">
+								<span class="sub-menu-text">
+								{% if is_granted('ROLE_ADMIN') %}
+									Caricamento file
+								{% else %}
+									Vedi files	
+								{% endif %}							
+								</span>
+							</a>
+						</li>                       
+                    </ul>
+                </li>
+            </ul>
+            <!-- /SIDEBAR MENU -->
+        </div>
+    </div>
+	{% endif %}
+    <!-- /SIDEBAR -->
+	
+    <div id="main-content">
+        <div class="container">
+            <div class="row">
+                <div id="content" class="col-lg-12">
+                    <!-- PAGE HEADER-->
+                    <!--MAIN CONTENT-->
+                    {% block content %}{% endblock %}
+                    <!--END MAIN CONTENT-->
+					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="footer-tools">
+							<span class="go-top">
+								<i class="fa fa-chevron-up"></i> Top
+							</span>
+                    </div>
+					{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>	 
+	
+</section>
+</body>
+</html>

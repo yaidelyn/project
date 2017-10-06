@@ -1,0 +1,166 @@
+{% extends '::backend.html.twig' %}
+{% block title %}List Users{% endblock %}
+ {%  block stylesheets %}
+     {{ parent() }}
+     <!-- UNIFORM -->
+     <link rel="stylesheet" type="text/css" href="{{asset('web/bundles/backend/js/uniform/css/uniform.default.min.css')}}" />
+     <!-- DATA TABLES -->
+     <link rel="stylesheet" type="text/css" href="{{asset('web/bundles/backend/js/datatables/media/css/jquery.dataTables.min.css')}}" />
+     <link rel="stylesheet" type="text/css" href="{{asset('web/bundles/backend/js/datatables/media/assets/css/datatables.min.css')}}" />
+     <link rel="stylesheet" type="text/css" href="{{asset('web/bundles/backend/js/datatables/extras/TableTools/media/css/TableTools.min.css')}}" />
+ {%  endblock %}
+ {% block javascripts %}
+    {{ parent() }}
+     <!-- UNIFORM -->
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/uniform/jquery.uniform.min.js')}}"></script>
+     <!-- BOOTBOX -->
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/bootbox/bootbox.min.js')}}"></script>
+     <!-- DATA TABLES -->
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/datatables/media/assets/js/datatables.min.js')}}"></script>
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/datatables/extras/TableTools/media/js/TableTools.min.js')}}"></script>
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/datatables/extras/TableTools/media/js/ZeroClipboard.min.js')}}"></script>
+     <!-- COOKIE -->
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/jQuery-Cookie/jquery.cookie.min.js')}}"></script>
+     <script src="{{asset('web/bundles/backend/js/bootstrap-wizard/form-wizard.min.js')}}"></script>
+     <script>
+        jQuery(document).ready(function() {
+            // App.setPage("create_user");  //Set current page
+            // alert(window.location.pathname);
+           // App.init(); //Initialise plugins and elements
+           // handleDataTables();
+
+            //delete gara
+            $('.btn-delete').each(function(){
+                $(this).click(function(){
+                    //var r = confirm("Sei sicuro di voler eliminare questo utente?");
+                    $("#mask").css({'display':'block'});
+                    var object = $(this).parent().parent();
+                    var value =  $(this).parent().parent().attr('id');
+                    jConfirm('Sei sicuro di voler eliminare questo utente?', 'Dialogo di conferma', function(r) {
+                        if (r == true){
+                            // alert(value);
+                            var url = "{{ path('delete_user',{'id':'text1'})}}";
+                            url = url.replace("text1", value);
+                            $.ajax({
+                                type: "POST",
+                                url: url,
+                                data:{},
+                                dataType:"json",
+                                success: function(response) {
+                                    if(response.success){
+                                        $(object).remove();
+                                        jAlert("L'utente è stato rimosso correttamente", 'Dialog Alert');
+                                    }
+                                    $("#mask").css({'display':'none'});
+                                }
+                            });
+                        }
+                        else
+                            $("#mask").css({'display':'none'});
+                    });
+                });
+            });
+            //edit user
+            $('.btn-edit').each(function(){
+                $(this).click(function(){
+				//alert('holaaa');
+                    var value =  $(this).attr('id');
+                    var url = "{{ path('edit_user',{'iduser':'text1'})}}";
+                    url = url.replace("text1", value);
+                    window.location.href = url;
+                }) ;
+            });
+			$('#datatable1').dataTable({
+                "sPaginationType": "full_numbers"
+            });
+			$('#datatable1').ajax.reload();
+        });
+
+        /*-----------------------------------------------------------------------------------*/
+        /*	Data Tables
+         /*-----------------------------------------------------------------------------------*/
+        var handleDataTables = function () {
+            
+           /* $('#datatable2').dataTable({
+                "sPaginationType": "bs_full",
+                sDom: "<'row'<'dataTables_header clearfix'<'col-md-4'l><'col-md-8'Tf>r>>t<'row'<'dataTables_footer clearfix'<'col-md-6'i><'col-md-6'p>>>",
+                oTableTools: {
+                    aButtons: ["copy", "print", "csv", "xls", "pdf"],
+                    sSwfPath: "js/datatables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf"
+                }
+            });*/
+            /*$('.datatable').each(function(){
+                var datatable = $(this);
+                // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+                var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+                search_input.attr('placeholder', 'Search');
+                search_input.addClass('form-control input-sm');
+                // LENGTH - Inline-Form control
+                var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+                length_sel.addClass('form-control input-sm');
+            });*/
+        }
+     </script>
+     <!-- /JAVASCRIPTS -->
+ {% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header">
+                <!-- BREADCRUMBS -->
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{path('User_index')}}">Home</a>
+                    </li>
+                    <li>Users</li>
+                </ul>
+                <!-- /BREADCRUMBS -->
+                <div class="clearfix">
+                    <h3 class="content-title pull-left">List Users</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+ <div class="row">
+     <div class="col-md-12">
+         <div class="box border green">
+             <div class="box-title">
+                 <h4><i class="fa fa-table"></i>List users</h4>
+             </div>
+             <div class="box-body" style="padding-bottom:25px;">
+                 <table id="datatable1" cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered table-hover">
+                     <thead>
+                     <tr>
+                         <th>Nome</th>
+                         <th>Email</th>
+                         <th>Genere</th>
+                         <th>Telefono</th>
+                         <th>Luogo</th>
+                         <th>Nazione</th>
+                         <th>Action</th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                    {% for item in result.data.profile %}
+                         <tr id="{{ item.iduser }}" class="gradeX">
+                             <td>{{ item.fullname }}</td>
+                             <td>{{ item.email }}</td>
+                             <td>{{ item.sexo }}</td>
+                             <td>{{ item.phone }}</td>
+                             <td>{{ item.location }}</td>
+                             <td>{{ item.pais }}</td>
+                             <td>
+                                 <button  id="{{ item.iduser }}" class="btn btn-primary btn-xs btn-edit"><i class="fa fa-pencil"></i></button>
+                                 <button  class="btn btn-danger btn-xs btn-delete"><i class="fa fa-trash-o "></i></button>
+                             </td>
+                         </tr>
+                    {% endfor %}
+                     </tbody>
+                 </table>
+             </div>
+         </div>
+     </div>
+ </div>
+{% endblock %}

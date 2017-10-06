@@ -1,0 +1,23 @@
+User_index:
+    path:     /
+    defaults: { _controller: FrontendBundle:Default:index }
+
+contatti:
+    path:     /contatti
+    defaults: { _controller: FrontendBundle:Default:contatti }
+
+chi_siamo:
+    path:     /chisiamo
+    defaults: { _controller: FrontendBundle:Default:chiSiamo }
+
+links:
+    path:     /links
+    defaults: { _controller: FrontendBundle:Default:links }
+
+consulenza:
+    path:     /consulenza/{id}
+    defaults: { _controller: FrontendBundle:Default:consulenza }
+
+servizi:
+    path:     /servizi
+    defaults: { _controller: FrontendBundle:Default:servizi }

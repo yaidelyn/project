@@ -1,0 +1,68 @@
+{% extends '::backend.html.twig' %}
+{% block title %}Administrator{% endblock %}
+  {%  block stylesheets %}
+      {{ parent() }}
+  {%  endblock %}
+ {% block javascripts %}
+    {{ parent() }}
+     <script>
+         jQuery(document).ready(function() {
+             App.setPage("index");  //Set current page
+             App.init(); //Initialise plugins and elements
+             handleGritter();
+         });
+         /*-----------------------------------------------------------------------------------*/
+         /*	Handles Gritter on Load
+          /*-----------------------------------------------------------------------------------*/
+         var handleGritter = function () {
+             /*if ($.cookie('gritter_show')) {
+                 alert('Holaaa');
+                 return;
+             }*/
+             $.cookie('gritter_show', 1);
+
+             {% for event in result.data.events %}
+                 setTimeout(function () {
+                     $.extend($.gritter.options, {
+                         position: 'top-right'
+                     });
+                     var unique_id = $.gritter.add({
+                         title: '{{ event.title }}',
+                         text: '{{ event.description }}',
+                         sticky: true,
+                         time: '',
+                         class_name: 'my-sticky-class'
+                     });
+                     /*
+                     setTimeout(function () {
+                         $.gritter.remove(unique_id, {
+                             fade: true,
+                             speed: 'slow'
+                         });
+                     }, 12000);
+                     */
+                 }, 1000);
+             {% endfor %}
+         }
+     </script>
+  {% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header">
+                <!-- BREADCRUMBS -->
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{ path('User_index') }}">Home</a>
+                    </li>
+                    <li>Dashboard</li>
+                </ul>
+                <!-- /BREADCRUMBS -->
+                <div class="clearfix">
+                    <h3 class="content-title pull-left">Dashboard</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

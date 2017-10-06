@@ -1,0 +1,119 @@
+{% extends '::base_home.html.twig' %}
+{% block stylesheets %}
+    <link href="http://www.google-analytics.com" rel="dns-prefetch"/>
+    <link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet' type='text/css'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{asset('bundles/frontend/css/bootstrap.css')}}" rel='stylesheet' type='text/css'/>
+    <link href="{{asset('bundles/frontend/css/main.css')}}" rel='stylesheet' type='text/css'/>
+    <link href="{{asset('bundles/frontend/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block javascripts %}
+    <script src="{{asset('bundles/frontend/js/jquery-1.11.1.min.js')}}"></script>
+    <script src="{{asset('bundles/frontend/js/jquery.easydropdown.js')}}"></script>
+    <script src="{{asset('bundles/frontend/js/responsiveslides.min.js')}}"></script>
+	<script src="{{asset('bundles/frontend/js/cookies.js')}}"></script>
+    <script src="{{asset('bundles/frontend/js/nav.js')}}"></script>
+    <script>
+        $(function () {
+            var tmp_url = '../../../';
+            if (typeof(other_url) != "undefined" && other_url !== null)
+                tmp_url = other_url;
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true
+            });
+            $.ajax({
+                type: 'POST',
+                url: tmp_url + 'TLangs/tlang.php',
+                data:{fn: "getLang"},
+                dataType:"json",
+                success: function(response){
+                    tlang = response.data.d;
+                    d = response.data.result;
+                    for(i=0;i<d.length;i++){
+                        var res = d[i].key.split("_");
+                        if ($("#"+d[i].key).prop("placeholder") != undefined && $("#"+d[i].key).prop("placeholder") != ''){
+                            $("#"+d[i].key).prop({"placeholder":d[i].value});
+                        }
+                        else if($("#"+res[0]).prop('type') == "select-one")
+                            $("#"+res[0]+" option:eq("+res[1]+")").text(d[i].value);
+                        else{
+                            //Por ids
+                            $("#"+d[i].key).val(d[i].value);
+                            if ($("#"+d[i].key+" a").length > 0)
+                                $("#"+d[i].key+" > a").text(d[i].value);
+                            else{
+                                $("#"+d[i].key).text(d[i].value);
+                                //Por clases
+                                $("."+d[i].key).val(d[i].value);
+                                $("."+d[i].key).text(d[i].value);
+                                $("."+d[i].key+":first-child").val(d[i].value);
+                                $("."+d[i].key+":first-child").text(d[i].value);
+                            }
+                        }
+                    }
+                    switch(tlang){
+                        case 'es':
+                            $(".selected").text("Espa�ol");
+                            $(".dropdown li:nth-child(1)").addClass("active");
+                        break;
+                        case 'en':
+                            $(".selected").text("English");
+                            $(".dropdown li:nth-child(2)").addClass("active");
+                        break;
+                    }
+                }
+            });
+
+            $(".flags a").click(function() {
+                var lang = $(this).prop('id');
+                //$("#mask").css({"display":"block"});
+                $.ajax({
+                    type: 'POST',
+                    url: tmp_url + 'TLangs/tlang.php',
+                    data:{fn: "changeLang", lang: lang},
+                    dataType:"json",
+                    success: function (response) {
+                        d = response.result;
+                        for(i=0;i<d.length;i++){
+                            var res = d[i].key.split("_");
+                            if ($("#"+d[i].key).prop("placeholder") != undefined && $("#"+d[i].key).prop("placeholder") != ''){
+                                $("#"+d[i].key).prop({"placeholder":d[i].value});
+                            }
+                            else if($("#"+res[0]).prop('type') == "select-one")
+                                $("#"+res[0]+" option:eq("+res[1]+")").text(d[i].value);
+                            else{
+                                //Por ids
+                                $("#"+d[i].key).val(d[i].value);
+                                if ($("#"+d[i].key+" a").length > 0)
+                                    $("#"+d[i].key+" > a").text(d[i].value);
+                                else{
+                                    $("#"+d[i].key).text(d[i].value);
+                                    //Por clases
+                                    $("."+d[i].key).val(d[i].value);
+                                    $("."+d[i].key).text(d[i].value);
+                                    $("."+d[i].key+":first-child").val(d[i].value);
+                                    $("."+d[i].key+":first-child").text(d[i].value);
+                                }
+                            }
+                        }
+                        //$("#mask").css({"display":"none"});
+                        var cad = '';
+                        if (lang == 'en'){
+                            $("#it").addClass('active');
+                            $("#en").removeClass('active');
+                        }
+                        else{
+                            $("#en").addClass('active');
+                            $("#it").removeClass('active');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

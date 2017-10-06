@@ -1,0 +1,415 @@
+{% extends '::backend.html.twig' %}
+{% block title %}Calendar{% endblock %}
+{%  block stylesheets %}
+    {{ parent() }}
+
+    <!-- CALENDAR -->
+    <link rel="stylesheet" type="text/css" href="{{asset('bundles/backend/js/fullcalendar/fullcalendar.min.css')}}" />
+    <!-- SELECT2 -->
+    <link rel="stylesheet" type="text/css" href="{{asset('bundles/backend/js/select2/select2.min.css')}}" />
+{%  endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <!-- CALENDAR -->
+    <script type="text/javascript" src="{{asset('bundles/backend/js/fullcalendar/fullcalendar.min.js')}}"></script>
+    <!-- SELECT2 -->
+    <script type="text/javascript" src="{{asset('bundles/backend/js/select2/select2.min.js')}}"></script>
+    <!-- INPUT MASK -->
+    <script type="text/javascript" src="{{asset('bundles/backend/js/bootstrap-inputmask/bootstrap-inputmask.min.js')}}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            App.setPage();  //Set current page
+            //alert(window.location.pathname);
+            App.init(); //Initialise plugins and elements
+            var calendar = $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                selectHelper: true,
+                events: {
+                    url: "{{ path('events') }}",
+                    type: 'POST',
+                    data: function() {
+                        var fecha = $('#calendar').fullCalendar('getDate');
+                        return {
+                            month: fecha.getMonth() + 1,
+                            year: fecha.getFullYear()
+                        }
+                    },
+                    beforeSend: function(){
+                        $("#mask").css({"display": "block"});
+                    },
+                    success: function(items){
+                        $('#event_select').empty().append('<option value=""></option>');
+                        $.each(items, function (i, item) {
+                            $('#event_select').append($('<option>', { 
+                                value: item.id,
+                                text : item.title 
+                            }));
+                        });
+                        $("#mask").css({"display": "none"});
+                    }
+                },
+                eventRender: function (event, element) {
+                    element.click(function() {
+                        var title = event.title;
+                        var id = event.id;
+						var data = {
+							'id':id,
+							'title':title
+						}
+                        $('#modalTitle').html(title);
+                        $('#modalBody').html(event.description);
+                        $('#fullCalModal').modal();
+                        $.ajax({
+                            type: "POST",
+                            url: "{{path('sendEvent')}}",
+                            data: data,
+                            dataType:"json",
+                            success: function(result){}
+                        });
+                    });
+                }
+            });
+
+            $("#user_select").select2({
+                placeholder: "Selezionare User",
+                allowClear: true
+            });
+
+            $("#event_select").select2();
+
+            $("#del-x").click(function(e) {
+                if ($("#event_select").val() != ''){
+                    $("#mask").css({"display": "block"});
+                    var data = { 'id': $("#event_select").val() }
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "{{path('delEvents')}}",
+                        data:{data:data},
+                        dataType:"json",
+                        success: function(result) {
+                            if(result.code == 1){
+                                calendar.fullCalendar('removeEvents', result.event, true);
+                                $("#event_select option").each(function(){
+                                    var text = $(this).text().trim();
+                                    if (result.text == text)
+                                        $(this).remove();
+                                });
+                                $(".select2-chosen").text('');
+                                $("#mask").css({"display": "none"});
+                            }
+                        }
+                    });
+                }
+                else return false;
+            });
+
+            $("#del-all").click(function(e) {
+                $("#mask").css({"display": "block"});
+                var fecha = $('#calendar').fullCalendar('getDate');
+                var month = fecha.getMonth() + 1;
+                var year  = fecha.getFullYear();
+                var data = {'id': -1, 'month': month, 'year': year}
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('delEvents')}}",
+                    data:{data:data},
+                    dataType:"json",
+                    success: function(result) {
+                       if(result.code == 1){
+                            calendar.fullCalendar('removeEvents');
+                            $('#event_select').empty().append('<option value=""></option>');
+                            $(".select2-chosen").text('');
+                            $("#mask").css({"display": "none"});
+                       }
+                    }
+                });
+            });
+
+            $("#add-e").click(function(e) {
+                if ($("#title").val() != '' && ($("#user_select").val() != null || $("#all_user").prop('checked')) && $("#from").val() != ''){
+                    e.preventDefault();
+                    alerts = Array();
+                    $("#myalert input.mdate").each(function(){
+                        if($(this).val() != '')
+                            alerts.push($(this).val());
+                    });
+                    var ids_aux = $("#user_select").val();
+                    if ($("#all_user").prop('checked'))
+                        ids_aux = -1;
+                    var data ={
+                        'title':$('#title').val(),
+                        'ids': ids_aux,
+                        'start': $('#from').val(),
+                        'end':$('#to').val(),
+                        'site':$('#site').val(),
+                        'descript': $('#descript').val(),
+                        'alerts': alerts
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "{{path('setEvent')}}",
+                        data:{data:data},
+                        dataType:"json",
+                        beforeSend:function(){
+                            $("#mask").css({"display": "block"});
+                        },
+                        success: function(result) {
+                            if(result.code == 1){
+                                var start = result.event.start.split('-');
+                                var end = result.event.start.split('-');
+                                if (result.event.end)
+                                    end = result.event.end.split('-');
+                                calendar.fullCalendar('renderEvent',
+                                    {
+                                        id: result.event.id,
+                                        title: result.event.title,
+                                        color: result.event.color,
+                                        description: result.event.description,
+                                        start: new Date(start[0], start[1]-1, start[2]),
+                                        end: new Date(end[0], end[1]-1, end[2])
+                                    },
+                                    true // make the event "stick"
+                                );
+                                var cad = '<option value="'+result.id+'">'+$('#title').val()+'</option>';
+                                $("#event_select").append(cad);
+                                $('#fevents')[0].reset();
+                                $(".select2-choices li.select2-search-choice").each(function(){
+                                    $(this).remove();
+                                });
+                                $("#all_user").prop({'checked': false});
+                                $("#myalert").html('');
+                                $("#mask").css({"display": "none"});
+                                jAlert("L'evento è stato creato correttamente", 'Dialog Alert');
+                            }
+                        }
+                    });
+                }
+            });
+
+            delAlert = function(id){
+                $("#d"+id).remove();
+            }
+
+            $("#all_user").click(function(e) {
+                $(".select2-choices li.select2-search-choice a.select2-search-choice-close").each(function(){
+                    $(this).click();
+                });
+                if ($(this).prop('checked'))
+                    $("#d_ll").css({'display': 'block'});
+                else
+                    $("#d_ll").css({'display': 'none'});
+            });
+
+            $("#btnplus").click(function(e) {
+                var x = $("#myalert div.col-md-3").length + 1;
+                var div = '<div id="d'+x+'" class="col-md-3 mgbotton"><input type="text" class="form-control mdate" id="alert_'+x+'" data-mask="99/99/9999"/><a class="alertminus btn btn-inverse" onclick="delAlert('+x+');">-</a></div>';
+                $("#myalert").append(div);
+            });
+        });
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header">
+                <!-- BREADCRUMBS -->
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{path('User_index')}}">Home</a>
+                    </li>
+                    <li>Calendario</li>
+                </ul>
+                <!-- /BREADCRUMBS -->
+                {% if is_granted('ROLE_ADMIN') %}
+                <div class="box border red">
+                    <div class="box-title">
+                        <h4><i class="fa fa-bars"></i>Crea Evento</h4>
+                        <div class="tools hidden-xs">
+                            <a href="#box-config" data-toggle="modal" class="config">
+                                <i class="fa fa-cog"></i>
+                            </a>
+                            <a href="javascript:;" class="reload">
+                                <i class="fa fa-refresh"></i>
+                            </a>
+                            <a href="javascript:;" class="collapse">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a href="javascript:;" class="remove">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <form id="fevents" class="form-horizontal" action="#" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label">Titolo</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="title" name="title" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label">Luogo</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="site" name="site"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label">Descrizione</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="descript" name="descript"/>
+                                            <!--<textarea class="form-control" rows="2" id="descript" name="descript"></textarea>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label">Data</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="from" name="from" data-mask="99/99/9999" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label">Scadenza</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="to" name="to" data-mask="99/99/9999"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label">Users</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <span id="d_ll"></span>
+                                                    <select multiple name="user" id="user_select" class="col-md-12" required>
+                                                        <option></option>
+                                                    {% for data in result.users %}
+                                                        {<option value="{{ data.id }}">{{ data.name }}</option>}
+                                                    {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2" style="margin-left:-15px;padding-right:0;">
+                                                    <label class="checkbox"><input type="checkbox" id="all_user" class="uniform" value="1" style="margin-top:2px;">Tutto</label>
+                                                </div>
+                                            </div>
+                                        </div>             
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <fieldset class="alerts">
+                                        <legend id="legend">Alerts</legend>
+                                        <a id="btnplus" class="alertplus btn btn-inverse">+</a>
+                                        <div id="myalert"></div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="submit" id="add-e" class="btn btn-success">Inviare</button>
+                                </div>
+                                <div class="col-md-10">
+                                    <div id="action" style="margin-top:10px;"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BOX -->
+            <div class="box border">
+                <div class="box-title">
+                    <h4><i class="fa fa-calendar"></i>Calendario</h4>
+                    <div class="tools">
+                        <a href="#box-config" data-toggle="modal" class="config">
+                            <i class="fa fa-cog"></i>
+                        </a>
+                        <a href="javascript:;" class="reload">
+                            <i class="fa fa-refresh"></i>
+                        </a>
+                        <a href="javascript:;" class="collapse">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a href="javascript:;" class="remove">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                     {% if is_granted('ROLE_ADMIN') %}
+                        <div class="col-md-3">
+                            <div id='external-events'>
+                                <form id="devents" class="form-horizontal" action="#">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <select name="event" id="event_select" class="col-md-12 full-width-fix">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <button type="submit" id="del-x" class="btn btn-success">Eliminare</button></p>
+                                        </div>
+                                        <div class="col-md-6" style="padding-left:0;">
+                                            <button type="submit" id="del-all" class="btn btn-success">Eliminare tutti</button></p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                        {% else %}
+                        <div class="col-md-12">
+                        {% endif %}
+                            <div id="fullCalModal" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                                            <h4 id="modalTitle" class="modal-title"></h4>
+                                        </div>
+                                        <div id="modalBody" class="modal-body"></div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id='calendar'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /BOX -->
+        </div>
+    </div>
+{% endblock %} 

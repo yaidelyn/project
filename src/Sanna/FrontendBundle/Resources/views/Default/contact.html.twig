@@ -1,0 +1,167 @@
+{% extends '::frontend.html.twig' %}
+{% block title %}Contatti{% endblock %}
+  {%  block stylesheets %}
+      {{ parent() }}
+	  <style>     
+      #map {
+        width: 100%;
+		height: 400px;
+		top:25px;
+      }
+    </style>
+  {%  endblock %}
+{% block bodypage %}
+    <ul class="breadcrumbs">
+        <div class="container">
+            <li>
+                <a title="Go to Home Page" href="{{ path('User_index') }}"><img alt="" src="{{asset('web/bundles/frontend/img/home.png')}}"></a>
+            </li>
+            <li class="home">
+                <span class="red mcontact">Contact</span>
+            </li>
+        </div>
+    </ul>
+    <section>
+        <div class="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <form id="fcontact" class="form-horizontal" action="#">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label sname">Name</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="name" name="name" pattern="[a-zA-Z0-9 ]+" autocomplete="off" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label slastname">Lastname</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="lastname" name="lastname" pattern="[a-zA-Z0-9 ]+" autocomplete="off" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label">Email</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="email" name="email" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label smessage">Message</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" rows="3" id="message" name="message" autocomplete="off" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="contact-form">
+                                        <input type="submit" value="Send" class="ssend">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-lg-offset-1">
+                        <div class="form-contacto2 panel" style="background-color:#FFFDD7;">
+                            <h6 id="fheader" class="fheader mcontact">Contatti</h6>
+                            <p class="descr">Studio di Consulenza Societaria, Tributaria e di Economia Aziendale.</p>
+                            <address class="panel-body">
+                                <p><span id="address">Indirizzo</span>: Via Lunigiana, 19, 09122 Cagliari, Italia.</p>
+                                <p>Tel: (+39) 070271141</p>
+                                <!--p>Fax: (+39) 0702081375</p-->
+                                <p>Email: <a href="javascript:;">segreteria@studiosanna.info</a>
+                                <p>Pec: <a href="javascript:;">studiosadrsanna@legalmail.it</a>
+                                </p>
+                            </address>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+	<!--script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx4CK4nzONmtX9sdOsMWKbuDYJAzHab9o&libraries=places&sensor=false"></script-->
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx4CK4nzONmtX9sdOsMWKbuDYJAzHab9o&callback=initMap">
+    </script>
+    <script>	
+		function initMap() {
+			  var myLatLng = {lat: 39.2417078, lng: 9.0989447};
+
+			  var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 15,
+				center: myLatLng
+			  });
+
+			  var marker = new google.maps.Marker({
+				position: myLatLng,
+				map: map,
+				title: 'Hello World!'
+			  });
+		}
+
+       /*var map;
+	    $(function(){
+            //google map
+            function initialize() {
+                var myLatlng = new google.maps.LatLng(39.2053675, 9.1446775);
+                var mapOptions = {
+                    zoom: 15,
+                    scrollwheel: false,
+                    center: myLatlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: 'Hello World!'
+                });
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+        });*/
+
+       /* $(document).ready(function(){
+		//initMap();
+            map = new GMaps({
+                el: '#map',
+                lat: 39.2053675,
+                lng: 9.1446775
+            });
+            map.addMarker({
+                lat: 39.2053675,
+                lng: 9.1446775,
+                title: 'Cagliari',
+                details: {
+                    /* database_id: 42,
+                     author: 'HPNeo'
+                },
+                click: function(e){
+                    if(console.log)
+                        console.log(e);
+                    alert('You clicked in this marker');
+                },
+                mouseover: function(e){
+                    if(console.log)
+                        console.log(e);
+                }
+            });
+        });*/
+
+    </script>
+{% endblock %}

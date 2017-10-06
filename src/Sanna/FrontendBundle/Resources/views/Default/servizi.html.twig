@@ -1,0 +1,109 @@
+{% extends '::frontend.html.twig' %}
+{% block title %}Servizi{% endblock %}
+  {%  block stylesheets %}
+      {{ parent() }}
+  {%  endblock %}
+{% block bodypage %}
+    <ul class="breadcrumbs">
+        <div class="container">
+            <li>
+                <a title="Go to Home Page" href="{{ path('User_index') }}"><img alt="" src="{{asset('web/bundles/frontend/img/home.png')}}"></a>
+            </li>
+            <li class="home">
+                <span class="red serv">Servizi</span>
+            </li>
+        </div>
+    </ul>
+    <div class="column_center"></div>
+        <div class="content_bottom">
+            <div class="container">
+                <div id="fullCalModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                                <h4 id="modalTitle" class="modal-title"></h4>
+                            </div>
+                            <div id="modalBody" class="modal-body"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-1" style="padding:0">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-4">
+                            <img src="{{asset('web/bundles/frontend/img/servizi/contabilita.jpg')}}" class="img-responsive"/>
+                            <h1 id="title1" class="title" style="text-align:left;margin-top:5px;">Contabilita'</h1>
+                            <p><span class="cont1">Questa spazio include una serie di attività tra cui la tenuta della contabilità semplificata, tenuta della contabilità ordinaria, la gestione del libro dei cespiti ammortizzabili, l'assistenza alla tenuta della contabilità da parte del'azienda</span>...</p>
+                            <p id="descript1" style="display:none;"><span class="cont1">Questa spazio include una serie di attività tra cui la tenuta della contabilità semplificata, tenuta della contabilità ordinaria, la gestione del libro dei cespiti ammortizzabili, l'assistenza alla tenuta della contabilità da parte del'azienda</span>, <span class="cont2">ivi compresi i suggerimenti in merito a programmi gestionali di contabilità.</span></p></br>
+                            <p><a id="1" class="see" href="#"><span class="leggi" style="color:#222;">Leggi tutto</span></a></p>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <img src="{{asset('web/bundles/frontend/img/servizi/analisis_bilancio.jpg')}}" class="img-responsive"/>
+                            <h1 id="title2" class="title" style="text-align:left;margin-top:5px;">Analisi di bilancio e controllo di gestione</h1>
+                            <p><span class="analisi1">Questo spazio comprende: analisi previsionali ed elaborazione di budget, controllo andamentale con situazioni di bilancio infrannuali, analisi degli scostamenti</span>...</p>
+                            <p id="descript2" style="display:none;"><span class="analisi1">Questo spazio comprende: analisi previsionali ed elaborazione di budget, controllo andamentale con situazioni di bilancio infrannuali, analisi degli scostamenti</span>, <span class="analisi2">riclassificazioni e analisi di bilancio con indici, valutazione rating aziendale (conforme a Basilea2).</span></p></br>
+                            <p><a id="2" class="see" href="#"><span class="leggi" style="color:#222;">Leggi tutto</span></a></p>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <img src="{{asset('web/bundles/frontend/img/servizi/finanziamenti.jpg')}}" class="img-responsive"/>
+                            <h1 id="title3" class="title" style="text-align:left;margin-top:5px;">Area finanziamenti e contributi a fondo perduto</h1>
+                            <p><span class="area1">Lo Studio si occupa di esporre e istruire pratiche di finanziamento a fondo perduto e di agevolazioni alle imprese sia già in attività che di nuova costituzione</span>...</p>
+                            <p id="descript3" style="display:none;"><span class="area1">Lo Studio si occupa di esporre e istruire pratiche di finanziamento a fondo perduto e di agevolazioni alle imprese sia già in attività che di nuova costituzione</span>. <span class="area2">I finanziamenti a fondo perduto sono dei prestiti diretti a particolari tipi di persone (giovani, donne, disoccupati...) che hanno intenzione di avviare una attività di impresa che rientra in una ben determinata categoria. Tali agevolazioni una volta acquisiti non vengono restituiti alla regione che li ha erogati, da cui a punto la dicitura "a fondo perduto". Lo Studio, oltre si occupa di istruire tali pratiche oltre a quelle di finanziamento a tasso agevolato per determinate categorie d’imprese.</span></p></br>
+                            <p><a id="3" class="see" href="#"><span class="leggi" style="color:#222;">Leggi tutto</span></a></p>
+                        </div>
+                    </div>
+                    <div class="column_center"></div>
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-4">
+                            <img src="{{asset('web/bundles/frontend/img/servizi/pubblici.jpg')}}" class="img-responsive"/>
+                            <h1 id="title4" class="title" style="text-align:left;margin-top:5px;">Servizi inerenti gli sportelli pubblici</h1>
+                            <p><span class="serv1">Questo spazio racchiude: l'assistenza per l'avvio di nuove attività commerciali, industriali, artigianali e professionali</span>...</p>
+                            <p id="descript4" style="display:none;"><span class="serv1">Questo spazio racchiude: l'assistenza per l'avvio di nuove attività commerciali, industriali, artigianali e professionali</span> <span class="serv2">(presso gli Sportelli Unici), le pratiche amministrative, autorizzazioni, licenze e permessi, le visure e certificazioni camerali, la gestione pratiche presso Ufficio Iva, Camera di Commercio, Ufficio Inps, Ufficio Inail, Ufficio del Lavoro.</span></p></br>
+                            <p><a id="4" class="see" href="#"><span class="leggi" style="color:#222;">Leggi tutto</span></a></p>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <img src="{{asset('web/bundles/frontend/img/servizi/fiscali.jpg')}}" class="img-responsive"/>
+                            <h1 id="title5" class="title" style="text-align:left;margin-top:5px;">Servizi fiscali</h1>
+                            <p><span class="fisca1">Questo spazio include una serie di attività tra cui a titolo esemplificativo si citano: l’elaborazione dichiarazioni</span>...</p>
+                            <p id="descript5" style="display:none;"><span class="fisca1">Questo spazio include una serie di attività tra cui a titolo esemplificativo si citano: l’elaborazione dichiarazioni</span> <span class="fisca2">dei redditi 730, Unico persone fisiche, Unico società di persone, Unico società di capitali, Irap, comunicazione annuale dati Iva, dichiarazione Iva annuale, elenchi clienti fornitori, elenchi black list, elenchi operazioni intracomunitarie, elaborazione 770, dichiarazione IMU, trasmissione telematica F24.</span></p></br>
+                            <p><a id="5" class="see" href="#"><span style="color:#222;">Leggi tutto</span></a></p>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <img src="{{asset('web/bundles/frontend/img/servizi/altri_servizi.jpg')}}" class="img-responsive"/>
+                            <h1 id="title6" class="title" style="text-align:left;margin-top:5px;">Altri servizi</h1>
+                            <p class="altri">Quest'area comprende ad esempio la domiciliazione di società di capitali ed enti non commerciali.</p>
+                            <p id="descript6" class="altri" style="display:none;">Quest'area comprende ad esempio la domiciliazione di società di capitali ed enti non commerciali.</p></br>
+                            <p><a id="6" class="see" href="#"><span class="leggi" style="color:#222;">Leggi tutto</span></a></p>
+                        </div>
+                    </div>
+                    <div class="column_center"></div>
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-4">
+                            <img src="{{asset('web/bundles/frontend/img/servizi/riservata.jpg')}}" class="img-responsive"/>
+                            <h1 id="title7" class="title" style="text-align:left;margin-top:5px;">Area riservata</h1>
+                            <p><span class="riser1">Accesso riservato ai soli clienti in possesso di username e password; attraverso questo spazio protetto l'utente può consultare i propri dati e documenti nella massima sicurezza e riservatezza delle informazioni</span>...</p>
+                            <p id="descript7" style="display:none;"><span class="riser1">Accesso riservato ai soli clienti in possesso di username e password; attraverso questo spazio protetto l'utente può consultare i propri dati e documenti nella massima sicurezza e riservatezza delle informazioni.</span> <span class="riser2">Per abilitarvi al servizio e richiedere la password</span>, <a href="mailto:info@studioecp.it"><span class="riser3">clicca qui.</span></p></br>
+                            <p><a id="7" class="see" href="#"><span class="leggi" style="color:#222;">Leggi tutto</span></a></p>
+                        </div>
+                        <div class="col-lg-8"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{asset('web/bundles/frontend/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript">
+        $(".see").click(function(e) {
+            var id = $(this).prop("id");
+            $('#modalTitle').html($("#title" + id).html());
+            $('#modalBody').html($("#descript" + id).html());
+            $('#fullCalModal').modal();
+        });
+    </script>
+{% endblock %}

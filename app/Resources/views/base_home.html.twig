@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %} | Studio Commercialista Dott. Pierpaolo Sanna </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ asset('bundles/backend/favicon.ico')}}" />
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<!-- HEADER -->
+<div id="overbox3">
+    <div id="infobox3">
+       <p>Per offrirti miglior servizio possibile questo sito utilizza cookies tecnici. Continuando la navigazione nel sito acconsenti al loro impiego in conformità  alla nostra
+       <a href="#">Cookies Policy</a><br>
+       <button onclick="aceptar_cookies();" class="btn btn-primary btncookies" type="button">OK</button>
+       </p>
+    </div>
+</div>
+<div id="mask"></div>
+<header class="header_bottom" role="banner">
+    <div class="container">
+        <div class="logo">
+            <a href="{{ path('User_index') }}">
+                <img src="{{ asset('bundles/frontend/img/logo2.png')}}" alt="Logo">
+            </a>
+        </div>
+        <div class="header_bottom_right">
+            <div class="h_menu4">
+                <a class="toggleMenu" href="#">Menu</a>
+                <ul class="nav">
+           <li id="home" class="{{ datos.home }}"><a href="{{ path('User_index') }}">Home</a></li>
+                    <li id="chisiamo" class="{{ datos.chisiamo }}"><a href="{{ path('chi_siamo') }}">Chi siamo</a></li>
+                    <li id="servizi" class="{{ datos.servizi }}"><a href="{{ path('servizi') }}">Servizi</a></li>
+                    <li id="links" class="{{ datos.links }}"><a href="{{ path('links') }}">Links</a></li>
+                    <li id="contatti" class="{{ datos.contatti }} contatti"><a href="{{ path('contatti') }}">Contatti</a></li>
+                    {% if (datos.login == 0) %}
+                    <!--li><a id="dregister" class="btn2" href="{{path('register_user')}}" title="Register"><i class="fa fa-user"></i></a></li-->
+                    <li><a id="dlogin" class="btn2" href="{{path('login')}}" title="Login"><i class="fa fa-key"></i></a></li>
+                    {% else %}
+                    <li><a id="dadmin" class="btn2" href="{{path('Base_site')}}" title="Dashboard"><i class="fa fa-dashboard"></i></a></li>
+                    <li><a id="dlogout" class="btn2" href="{{path('User_logout')}}" title="Logout"><i class="fa fa-power-off"></i></a></li>
+                    {% endif %}
+                     <div class="flags">
+                        {% set locale = datos.lang %}
+                        {% if locale == 'it' %}
+                            <a id="it"><img src="{{asset('bundles/frontend/img/it.png')}}"/></a>
+                            <span></span>
+                            <a id="en" class="active"><img src="{{asset('bundles/frontend/img/en.png')}}"/></a>
+                        {% elseif locale == 'en' %}
+                            <a id="it" class="active"><img src="{{asset('bundles/frontend/img/it.png')}}"/></a>
+                            <span></span>
+                            <a id="en"><img src="{{asset('bundles/frontend/img/en.png')}}"/></a>
+                        {% endif %}
+                    </div>
+					 {% if (datos.login == 1) %}
+                    <div class="welcome">
+						<span>Benvenuto,{{ datos.datalogin.namelogin }}</span>                       
+                    </div>
+					 {% endif %}
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</header>
+<main role="main">
+    {% block bodypage %}
+        <h1>Page Index</h1>
+    {% endblock %}
+</main>
+<!--FOOTER-->
+<footer class="footer" role="contentinfo">
+    <div class="footer_top">
+        <div class="container">
+            <div class="col-sm-4 grid-3">
+                <h3 id="infoc" class="mcontact">Contatti</h3>
+                <p><span class="address">Indirizzo</span>: Via Lunigiana, 19, 09122, Cagliari, Italia</p>
+                <p>Tel: (+39) 070271141</p>
+                <!--<p>Fax: (+39) 0702081375</p>-->
+                <p>Email: <a href="javascript:;">segreteria@studiosanna.info</a></p>
+                <p>Pec: <a href="javascript:;">studiosadrsanna@legalmail.it</a></p>
+            </div>
+            <div class="col-sm-4 col-xs-offset-1 grid-3">
+                <!--<h3>Social</h3>
+                <ul class="footer_social">
+                    <li><a href="#"><i class="tw1"></i></a></li>
+                    <li><a href="#"><i class="fb1"></i></a></li>
+                    <li><a href="#"><i class="g1"> </i></a></li>
+                    <li><a href="#"><i class="db1"></i></a></li>
+                    <li><a href="#"><i class="thumb"></i></a></li>
+                    <li><a href="#"><i class="vimeo"></i></a></li>
+                </ul>-->
+            </div>
+            <div class="col-sm-2 col-xs-offset-1">
+                <!--<img src="img/secure.png" alt=""/>-->
+            </div>
+        </div>
+    </div>
+    <div class="footer_bottom">
+        <div class="container">
+            <div class="copy">
+                <p>&copy; {{ "now"|date("Y") }} Copyright Sanna.</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</footer>
+</body>
+{% block javascripts %}
+{% endblock %}
+</html>

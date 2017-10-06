@@ -1,0 +1,57 @@
+    <div class="row">
+        <div class="col-md-12 toolbar">
+				<span class="btn-group">
+				  <button class="btn btn-light-grey replyBtn">
+                      <i class="fa fa-reply"></i>
+                  </button>
+				  <button class="btn btn-light-grey dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-angle-down"></i>
+                  </button>
+				  <ul class="dropdown-menu context pull-right text-left">
+                      <li><a href="#"><i class="fa fa-reply reply-btn"></i> Reply All</a></li>
+                      <li><a href="#"><i class="fa fa-arrow-right reply-btn"></i> Forward</a></li>
+                      <li><a href="#"><i class="fa fa-print"></i> Print</a></li>
+                      <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
+                      <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                      <li></li>
+                  </ul>
+				</span>
+				<span class="btn-group">
+					<button class="btn btn-light-grey">
+                        <i class="fa fa-cloud-download"></i>
+                    </button>
+					<button class="btn btn-light-grey">
+                        <i class="fa fa-share"></i>
+                    </button>
+					<button class="btn btn-light-grey">
+                        <i class="fa fa-trash-o"></i>
+                    </button>
+				</span>
+        </div>
+    </div>
+    <div class="divide-20"></div>
+    <div class="emailTitle emailViewHeader">
+        <h1>{{ result.data.email.subject }}</h1>
+    </div>
+    <hr>
+    <div class="emailViewContent">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">From:</label>
+                <label class="col-sm-11 control-label">{{ result.data.email.fromAddress }}<a href="mailto:{{ result.data.email.fromAddress }}">&lt;{{ result.data.email.fromAddress }}&gt;</a></label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">To:</label>
+                <label class="col-sm-11 control-label">Me <a href="mailto:{{ result.data.email.toaddress }}">&lt;{{ result.data.email.toaddress }}&gt;</a></label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">Date:</label>
+                <label class="col-sm-11 control-label">{{ result.data.email.date }}</label>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <div class="emailView">
+        {{ result.data.email.message |e('html')}}
+    </div>
+    <hr>

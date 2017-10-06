@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Home</source>
+                <target>Home</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Chi Siamo</source>
+                <target>About Us</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Progetto</source>
+                <target>Project</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Contatti</source>
+                <target>Contact</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Lavora con Noi</source>
+                <target>Work with Us</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Contributi Totali</source>
+                <target>Total Contributions</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Membri  Comunità</source>
+                <target>Members</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Comunità Payouts</source>
+                <target>Community Payouts</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Piattaforme</source>
+                <target>Bases</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Chi Siamo</source>
+                <target>About us</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Contatti</source>
+                <target>Contact</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Scegli un campo di specializzazione e accedi alla lista delle opportunità</source>
+                <target>Choose a field of specialization and get access to the list of opportunities</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Opportunità</source>
+                <target>Opportunity</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Continui Leggere</source>
+                <target>Continue Reading</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Manifesto</source>
+                <target>Apparent</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Come contribuire</source>
+                <target>How to contribute</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Autorizzazione</source>
+                <target>Licensing</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>L’ingegneria accessibile a TUTTI, SEMPRE, OVUNQUE</source>
+                <target>Engineering accessible to Anyone, Anytime, Anywhere</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>
+                    The World Of Collaborative Engineering aspira a innescare una Rivoluzione Creativa per
+                   cambiare il mondo dell’ingegneria come lo conosciamo. Creare cioè uno spazio OPEN SOURCE
+                   per la condivisione di idee e progetti, con la finalità di trasformare un sistema
+                   tradizionalmente chiuso in una piattaforma democratica di discussione partecipata,
+                   in cui le proposte degli utenti avranno la visibilità e l’importanza che meritano.
+                   Rendere quindi la progettazione ACCESSIBILE a TUTTI, sfruttando in pieno il
+                   POTENZIALE INUTILIZZATO di una comunità attiva sempre aggiornata e multidisciplinare,
+                   incoraggiando ogni membro a esprimersi liberamente in base alle proprie passioni e
+                   interessi, mettendosi al servizio della comunità con la propria professionalità e
+                   creatività.
+               </source>
+               <target>
+                The World of Collaborative Engineering aspires to trigger a Creative Revolution that
+                can change the world of engineering as we know it. Thereby creating an Open Source space for sharing
+                ideas and projects, with the aim of transforming a traditionally closed system into a democratic platform
+                for participatory discussion, in which the proposals of the users will have the visibility and
+                importance they deserve. Making design accessible to all, exploiting the untapped potential of
+                an active, always up to date, multidisciplinary community, encouraging every member to express
+                themselves according to their own passions and interests, by serving the community with
+                professionalism and creativity.
+              </target>
+           </trans-unit>
+           <trans-unit id="20">
+               <source>
+                  E’ la comunità a decidere
+              </source>
+              <target>
+               It is the community that decides
+             </target>
+           </trans-unit>
+           <trans-unit id="21">
+                 <source>
+                    COINVOLGERE gli utenti nelle SCELTE DECISIONALI E PROGETTUALI, condividendo i progetti
+                   fin dalle prime fasi, fornendo la possibilità, a coloro che sono i principali fruitori
+                   degli stessi beni, di esprimere le loro opinioni e i loro consigli per rendere ogni
+                   creazione veramente utile alla comunità, promuovendo l’eco-sostenibilità e il rispetto
+                   perl’ambiente. Una maggior velocità nel prendere le decisioni e nel problem solving
+                   consente di abbattere ulteriormente i tempi di realizzazione, evitando di consegnare
+                   opere già obsolete al momento della realizzazione.
+                 </source>
+                 <target>
+                    INVOLVING users in DECISION MAKING AND PLANNING, sharing projects from their inception,
+                    providing the opportunity to those who are the main users of the same goods to express their
+                    opinions and give advice in order to make every creation useful to the community, promote
+                    eco-sustainability and respect for the environment. Greater speed in decision-making and problem solving,
+                    can further reduce construction times, avoiding delivering works which are already obsolete at the time
+                    of their realization.
+                </target>
+            </trans-unit>
+              <trans-unit id="22">
+                <source>La TRASPARENZA come base della COLLABORAZIONE</source>
+                <target>TRANSPARENCY as a basis of the COLLABORATION</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Rendendo il processo decisionale e creativo totalmente pubblico, condiviso globalmente tra utenti, progettisti, amministrazioni ed esperti di ogni settore, ogni utente potrà conoscere in qualsiasi momento l’andamento dei lavori, il perché di eventuali cambiamenti e le motivazioni di determinate scelte tecniche e stilistiche. E' quindi possibile rimuovere gli aspetti “torbidi” talvolta tenuti volutamente sottotraccia e trasformando la realizzazione delle opere di ingegneria e architettura in un processo totalmente trasparente</source>
+                <target>By rendering  the decision-making and the creative process totally public, globally shared between users, designers, authorities and experts from every sector, every user will be able to know at any time the progress of work, reasons for changes and for determined technical and stylistic choices. It is possible to remove the confusing aspects, which are sometimes deliberately concealed and transform the realization of works of engineering and architecture in a completely transparent process.</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>La Rivoluzione ha bisogno del tuo supporto</source>
+                <target>The Revolution needs your support</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>TE.x è una nuova organizzazione che adotta un business model “Lean startup” ripetibile e scalabile.</source>
+                <target>TE.x is a new organization that adopts a "lean startup" business model, repeatable and scalable.</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>TE.x nasce dall’idea di lanciare una proposta di massiva trasformazione, su scala internazionale, del settore dei servizi di ingegneria e architettura. La proposta si riassume bene appunto nella cosiddetta MTP (massive transformation purpose): “Collaborative Engineering, a revolution for the benefit of humanity”, ovvero realizzare una rivoluzione basata sul concetto di Ingegneria Collaborativa, che aspira a creare un beneficio tangibile per l’intera collettività.</source>
+                <target>TE.x born from the idea to launch a proposal for a massive transformation, on an international scale, of the engineering and architectural services. The proposal is summed up well in the so-called MTP (massive transformation purpose): "Collaborative Engineering, a revolution for the benefit of humanity," in other words, to make a revolution based on the concept of Collaborative Engineering, which aims to create a tangible benefit to the entire community.</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>TE.x mira infatti ad introdurre nel settore dei servizi di ingegneria e architettura metodi e strumenti straordinariamente innovativi, facendo leva su un’intensa attività di ricerca sviluppata da personale altamente qualificato. L’obiettivo di TE.x è quello di diventare una infrastruttura di supporto per tutti i soggetti che intendono operare adottando principi e metodi dei collaborative commons, attraverso l’utilizzo di piattaforme peer to peer, algoritmi e community.</source>
+                <target>TE.x intend to introduce in the field of engineering and architecture services extraordinarily innovative methods and tools, leveraging on extensive research developed by highly qualified personnel. The goal of TE.x is to become a support infrastructure for all parties wishing to operate by adopting the principles and methods of collaborative commons, through the use of peer to peer platforms, algorithms and community.</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>Nel dettaglio, TE.x nasce dalla combinazione dei seguenti 10 steps:</source>
+                <target>In detail, TE.x is a combination of the following 10 steps:</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>contatti</source>
+                <target>contact</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>Indirizzo</source>
+                <target>Address</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>Telefono</source>
+                <target>Phone</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>rimani connesso</source>
+                <target>stay connected</target>
+            </trans-unit>
+			<trans-unit id="33">
+                <source>La Nostra Community</source>
+                <target>Our Community</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>Messaggio</source>
+                <target>Message</target>
+            </trans-unit>
+			<trans-unit id="35">
+                <source>MIGLIORE</source>
+                <target>BETTER</target>
+            </trans-unit>
+			<trans-unit id="36">
+                <source>Il nostro innovativo metodo produce risultati straordinari incanalando la creatività e il potenziale di esperti di primordine e gruppi di lavoro da tutto il mondo.Grazie al nostro network, basato su una cultura di condivisione/collaborazione e tecnologie innovative,riusciamo ad ottenere risultati non altrimenti raggiungibili.</source>
+                <target>Our innovative method produces extraordinary results harnessing the creativity and potential of top experts and teams worldwide.Thanks to our network based on a sharing/collaboration technologies, we get results not otherwise obtainable.</target>
+            </trans-unit>
+			<trans-unit id="37">
+                <source>PIÙ VELOCE</source>
+                <target>FASTER</target>
+            </trans-unit>
+			<trans-unit id="38">
+                <source>Grazie   alle  nuove  tecnologie internet e cloud assicuriamo la massima qualità nei nostri servizi in  tempi più brevi rispetto ad un metodo tradizionale.</source>
+                <target>Thanks to the instant connections and sharing opportunities offered by the new internet and cloud technologies we ensure the highest quality of our services in a shorter time compared to a traditional method.</target>
+            </trans-unit>
+			<trans-unit id="39">
+                <source>PIÙ ECONOMICO</source>
+                <target>CHEAPER</target>
+            </trans-unit>
+			<trans-unit id="40">
+                <source>L’Ingegneria Collaborativa introduce i servizi di ingegneria al concetto  di Zero Marginal Cost sfruttando risorse e strumenti  esistenti, condividendo conoscenza e infrastrutture.I nostri algoritmi selezionano solo i  professionisti più adatti e appassionati  per ogni  differente tipo  di  progetto,  trovando  ciò che ci serve dove ci serve. Tagliando tutti  i costi non necessari, raggiungiamo il miglior risultato al minor  costo.</source>
+                <target>Collaborative Engineering introduces engineering services to the Zero Marginal Cost Society,leveraging assets, accessing, sharing knowledge and infrastructures.Our algorithms select only the top suitable and passionate professionals for each different type of project, getting what we need where we need it. Cutting all unnecessary fees,we get the best result with the lowest cost.</target>
+            </trans-unit>
+			<trans-unit id="41">
+                <source>“TE.x fornisce servizi di ingegneria e architettura innovativi puntando su metodi e strumenti all’avanguardia, ricerca dettagliata e personale altamente qualificato.</source>
+                <target>"TE.x provides innovative engineering and architectural services leveraging cutting-edge methods, tools, extensive research and highly qualified personnel. </target>
+            </trans-unit>
+			<trans-unit id="42">
+                <source>L’Ingegneria Collaborativa è un nuovissimo modello peer-to-peer nel quale queste risorse convergono e si interconnettono per rendere il tradizionale mondo dell’ingegneria più smart”</source>
+                <target>Collaborative Engineering is a brand new peer-to-peer model in which these instruments converge and interconnect to make the traditional engineering world smarter."  </target>
+            </trans-unit>
+			<trans-unit id="43">
+                <source>Edilizia</source>
+                <target>Building</target>
+            </trans-unit>
+			<trans-unit id="44">
+                <source>Impianti</source>
+                <target>Installations</target>
+            </trans-unit>
+			<trans-unit id="45">
+                <source>Strutture</source>
+                <target>Structures</target>
+            </trans-unit>
+			<trans-unit id="46">
+                <source>Infrastrutture</source>
+                <target>Infrastructure</target>
+            </trans-unit>
+			<trans-unit id="47">
+                <source>Idraulica</source>
+                <target>Hydraulics</target>
+            </trans-unit>
+			<trans-unit id="48">
+                <source>Urbanistica-Ambiente e Territorio</source>
+                <target>Urbanistic environment and territory</target>
+            </trans-unit>
+			<trans-unit id="49">
+                <source>EDILIZIA</source>
+                <target>BUILDING</target>
+            </trans-unit>
+			<trans-unit id="50">
+                <source>IMPIANTI</source>
+                <target>INSTALLATIONS</target>
+            </trans-unit>
+			<trans-unit id="51">
+                <source>STRUTTURE</source>
+                <target>STRUCTURES</target>
+            </trans-unit>
+			<trans-unit id="52">
+                <source>INFRASTRUTTURE</source>
+                <target>INFRASTRUCTURE</target>
+            </trans-unit>
+			<trans-unit id="53">
+                <source>IDRAULICA</source>
+                <target>HYDRAULICS</target>
+            </trans-unit>
+			<trans-unit id="54">
+                <source>URBANISTICA-AMBIENTE E TERRITORIO</source>
+                <target>URBANISTIC ENVIRONMENT AND TERRITORY</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

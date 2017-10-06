@@ -1,0 +1,98 @@
+{% extends '::frontend.html.twig' %}
+{% block title %}Home{% endblock %}
+  {%  block stylesheets %}
+      {{ parent() }}
+  {%  endblock %}
+{% block bodypage %}
+    <section>
+        <!--SLIDER-->
+        <div class="slider">
+            <div class="callbacks_container">
+                <ul class="rslides" id="slider">
+                    <li><img src="{{asset('bundles/frontend/img/banner.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li><img src="{{asset('bundles/frontend/img/banner1.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li><img src="{{asset('bundles/frontend/img/banner2.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li><img src="{{asset('bundles/frontend/img/banner3.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li><img src="{{asset('bundles/frontend/img/banner4.jpg')}}" class="img-responsive" alt=""/></li>
+                </ul>
+            </div>
+        </div>
+        <div class="column_center"></div>
+        <div class="clearence">
+            <div class="container">
+                <div class="m_3"><span class="left_line"></span><h3 id="consulenza">CONSULENZA</h3><span class="right_line"></span></div>
+            </div>
+        </div>
+        <div class="column_center"></div>
+        <div class="content_bottom">
+            <div class="container">
+                 <div class="col-lg-3 col-sm-3">
+                    <div class="view view-first">
+                    <h3 id="cons1">Consulenza societaria</h3>
+                    <p id="consdesc1">Lo studio garantisce la necessaria consulenza societaria e l’adeguata assistenza nella costituzione di nuove società, nella revisione dei patti...</p><br/>
+                    <p><a href="{{ path('consulenza',{'id':1}) }}"><span class="leggi" style="color:#222;">Leggi tutto</span></a></p>
+                    </div>  
+                 </div>
+                 <div class="col-lg-3 col-sm-3">
+                    <div class="view view-first">
+                    <h3 id="cons2">Consulenza tributaria</h3>
+                    <p id="consdesc2">Questa area racchiude una serie di attività tra cui si possono citare la consulenza nella programmazione fiscale in materia di imposte dirette...</p><br/>
+                    <p><a href="{{ path('consulenza',{'id':2}) }}"><span class="leggi" style="color:#222;">Leggi tutto</span></a></p>    
+                    </div>
+                 </div>
+                 <div class="col-lg-3 col-sm-3">
+                    <div class="view view-first">
+                    <h3 id="cons3">Consulenza finanziaria all'azienda</h3>
+                    <p id="consdesc3">Questa area può comprendere una serie di attività tra cui a titolo esemplificativo si richiamano...</p><br/>
+                    <p><a href="{{ path('consulenza',{'id':3}) }}"><span class="leggi" style="color:#222;">Leggi tutto</span></a></p>
+                    </div>  
+                 </div>
+                 <div class="col-lg-3 col-sm-3">
+                    <div class="view view-first">
+                    <h3 id="cons4">Revisione contabile/legale e consulenza contabile</h3>
+                    <p id="consdesc4">Questa area comprende l’attività di revisione contabile e legale tipica del collegio sindacale o organo di...</p><br/>
+                    <p><a href="{{ path('consulenza',{'id':4}) }}"><span class="leggi" style="color:#222;">Leggi tutto</span></a></p>  
+                    </diiv>  
+                 </div>
+                 <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="callout">
+            <div class="vert-text">
+                <!--<h1>Alguna frase la la la la la</h1>-->
+            </div>
+        </div>
+        <!--div class="brands">
+            <div class="m_3"><span class="left_line"></span><h3>Favourite Brands</h3><span class="right_line"></span></div>
+            <div class="container">
+                <ul class="brands_list">
+                    <li><img src="{{asset('bundles/frontend/img/br1.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li><img src="{{asset('bundles/frontend/img/br2.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li><img src="{{asset('bundles/frontend/img/br3.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li><img src="{{asset('bundles/frontend/img/br4.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li><img src="{{asset('bundles/frontend/img/br5.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li><img src="{{asset('bundles/frontend/img/br6.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li><img src="{{asset('bundles/frontend/img/br7.jpg')}}" class="img-responsive" alt=""/></li>
+                    <li class="brand_last"><img src="{{asset('bundles/frontend/img/br8.jpg')}}" class="img-responsive" alt=""/></li>
+                    <div class="clearfix"></div>
+                </ul>
+            </div>
+        </div-->
+        <div class="grid-1">
+            <div class="container">
+                <h1 id="organiz">L'organizzazione del nostro studio commercialista</h1>
+                <div class="mini_container">
+                    <p><span id="organiz1">Lo studio Commercialista Dr. Pierpaolo Sanna si pone l’obbiettivo di offrire al cliente tutte le prestazioni che rientrano nell’attività tipica dei commercialisti e cioè:</span> <strong id="organiz2">bilanci, diritto commerciale, revisione e certificazione contabile, diritto tributario, gestione della crisi aziendale, diritto fallimentare, discipline aziendalistiche, diritto privato.</strong></p>
+                    <p><span id="organiz3">Offriamo una serie di servizi aggiuntivi, quali ad esempio la</span> <strong id="organiz4">tenuta della contabilità, l'elaborazione dei cedolini paga, l'impianto della contabilità industriale, l'analisi finanziaria, la redazione di budget e di piani industriali</strong>.</p>
+                    <p id="organiz5">Lo studio commercialista è organizzato con tecnologie informatiche e multimediali sia per la tenuta della contabilità che per il disbrigo di ogni pratica nonché per ricerche nelle banche dati su Internet; lo Studio mette a disposizione dei propri clienti un'area riservata e attraverso questo spazio protetto l'utente può consultare le proprie cicolari e documenti nella massima sicurezza e riservatezza delle informazioni.</p>
+                </div>    
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        var tmp_url = '../../../';
+    </script>
+{% endblock %}

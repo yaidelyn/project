@@ -1,0 +1,34 @@
+# you can read more about security in the related section of the documentation
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        Sanna\UsuarioBundle\Entity\User:
+            algorithm:        sha512
+            iterations:       10
+
+    role_hierarchy:
+        ROLE_USER:        ROLE_USER
+        ROLE_ADMIN:       ROLE_ADMIN
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        users:
+            entity: { class: UsuarioBundle:User, property: email }
+
+    firewalls:
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            form_login:
+                login_path:  login
+                check_path:  login_check
+                default_target_path: Base_site
+                always_use_default_target_path: true
+            logout:
+                path: User_logout
+                target: User_index
+    access_control:
+          - { path: ^/user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+          - { path: ^/(it|en)/admin/*, roles: [ROLE_ADMIN, ROLE_USER] }
+          - { path: ^/calendar, roles: [ROLE_ADMIN,ROLE_USER] }
+          - { path: ^/create_user, roles: IS_AUTHENTICATED_ANONYMOUSLY }

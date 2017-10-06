@@ -1,0 +1,98 @@
+{% extends '::frontend.html.twig' %}
+{% block title %}Links{% endblock %}
+  {%  block stylesheets %}
+      {{ parent() }}
+  {%  endblock %}
+{% block bodypage %}
+    <ul class="breadcrumbs">
+        <div class="container">
+            <li>
+                <a title="Go to Home Page" href="{{ path('User_index') }}"><img alt="" src="{{asset('web/bundles/frontend/img/home.png')}}"></a>
+            </li>
+            <li class="home">
+                <span class="red">Links</span>
+            </li>
+        </div>
+    </ul>
+    <div class="column_center"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-4">
+               <div class="view view-first"> 
+                <h3 id="enti">Enti e Istituzioni</h3>
+                <p><a href="http://www.giustizia.it" target="_blank"><span id="justi" style="color:#222;">Ministero della Giustizia</span></a></p>
+                <p><a href="http://www.finanze.it" target="_blank"><span id="econ" style="color:#222;">Ministero dell'Economia e delle Finanze</span></a></p>
+                <p><a href="http://www.lavoro.gov.it/lavoro/" target="_blank"><span id="lavo" style="color:#222;">Ministero del Lavoro</span></a></p>
+                <p><a href="http://www.sviluppoeconomico.gov.it/" target="_blank"><span id="prod" style="color:#222;">Ministero delle attività produttive</span></a></p>
+                <p><a href="http://www.ice.it/" target="_blank"><span style="color:#222;">ICE</span></a></p>
+                <p><a href="http://www.camcom.it/" target="_blank"><span id="comm" style="color:#222;">Camere commercio Italiane</span></a></p>
+                <p><a href="http://www.vb.camcom.it/" target="_blank"><span id="cvco" style="color:#222;">Camera di Commercio del VCO</span></a></p>
+                <p><a href="" target="_blank"><span id="cagli" style="color:#222;">Comune di Cagliari</span></a></p>
+                <p><a href="http://www.provincia.verbania.it/" target="_blank"><span id="prov" style="color:#222;">Provincia di Cagliari</span></a></p>
+                <p><a href="" target="_blank"><span id="regi" style="color:#222;">Regione Sardegna</span></a></p>
+                <p><a href="http://www.agenziaentrate.it/" target="_blank"><span id="entra" style="color:#222;">Agenzia delle Entrate</span></a></p>
+                <p><a href="http://www.inps.it/" target="_blank"><span style="color:#222;">INPS</span></a></p>
+                <p><a href="http://www.inail.it/" target="_blank"><span style="color:#222;">INAIL</span></a></p>
+                <p><a href="http://www.inpdap.it/" target="_blank"><span style="color:#222;">INPDAP</span></a></p>
+                <p><a href="http://www.istat.it/" target="_blank"><span style="color:#222;">ISTAT</span></a></p>
+                <p><a href="http://www.enasarco.it/" target="_blank"><span style="color:#222;">ENASARCO</span></a></p>
+                <p><a href="http://www.enasarco.it/" target="_blank"><span style="color:#222;">CONSOB</span></a></p>
+                <p><a href="http://www.conai.org/" target="_blank"><span style="color:#222;">CONAI</span></a></p>
+                <p><a href="http://www.fasi.it/" target="_blank"><span style="color:#222;">FASI</span></a></p>
+                <p><a href="http://www.bancaditalia.it/" target="_blank"><span id="banc" style="color:#222;">Banca d'Italia</span></a></p>
+                <p><a href="http://www.infocamere.it/" target="_blank"><span style="color:#222;">InfoCamere</span></a></p>
+                <p><a href="http://www.unioncamere.it/" target="_blank"><span style="color:#222;">UnionCamere</span></a></p>
+                <p><a href="http://www.cciaa.net/" target="_blank"><span id="nazi" style="color:#222;">CCIAA Nazionale</span></a></p>
+               </div>
+            </div>  
+            <div class="col-lg-5 col-sm-5">
+              <div class="view view-first">
+                <h3 id="ordi">Ordini professionali</h3>
+                <p><a href="http://www.cndcec.it/Portal/Default.aspx" target="_blank"><span id="dott" style="color:#222;">Consiglio Nazionale Dottori Commercialisti e degli Esperti Contabili</span></a></p>
+                <p><a href="http://www.commercialisticagliari.it/" target="_blank"><span id="ordi" style="color:#222;">Ordine dei Dottori Commercialisti di Cagliari</span></a></p>
+                <p><a href="http://www.ungdc.it/" target="_blank"><span id="union" style="color:#222;">Unione Giovani Dottori Commercialisti</span></a></p>
+                <p><a href="http://www.consulentidellavoro.it/" target="_blank"><span id="consi" style="color:#222;">Consiglio Nazionale Consulenti del Lavoro</span></a></p>
+                <p><a href="http://www.notariato.it/" target="_blank"><span id="nota" style="color:#222;">Consiglio Nazionale del Notariato</span></a></p>
+                <p><a href="http://www.avvocati.it/" target="_blank"><span id="degli" style="color:#222;">Consiglio Nazionale degli Avvocati</span></a></p></br>
+                <h3 id="borse">Borse internazionali</h3>
+                <p><a href="http://www.piazzaaffari.net/" target="_blank"><span id="affa" style="color:#222;">Piazza Affari</span></a></p>
+                <p><a href="http://www.londonstockexchange.com/en-gb/" target="_blank"><span style="color:#222;">London Stock Exchange - AIM</span></a></p>
+                <p><a href="http://www.nyse.com/" target="_blank"><span style="color:#222;">New York Stock Exchange</span></a></p>
+                <p><a href="http://www.tse.or.jp/english/" target="_blank"><span style="color:#222;">Tokyo Exchange</span></a></p></br>
+                <h3 id="parl">Parlamento</h3>
+                 <p><a href="http://www.parlamento.it/" target="_blank"><span id="parla" style="color:#222;">Parlamento Italiano</span></a></p>
+                 <p><a href="http://www.camera.it/" target="_blank"><span id="depu" style="color:#222;">Camera dei Deputati</span></a></p>
+                 <p><a href="http://www.senato.it/" target="_blank"><span id="sena" style="color:#222;">Senato</span></a></p>
+                 <p><a href="http://www.buvette.net/" target="_blank"><span style="color:#222;">La Buvette</span></a></p>
+             </div>
+           </div>  
+            <div class="col-lg-3 col-sm-3">
+              <div class="view view-first">
+                <h3 id="infom">L'informazione</h3>
+                 <p><a href="http://www.ilsole24ore.com/" target="_blank"><span id="sole" style="color:#222;">Il sole 24 Ore</span></a></p>
+                 <p><a href="http://www.italiaoggi.it/" target="_blank"><span id="oggi" style="color:#222;">Italia Oggi</span></a></p>
+                 <p><a href="http://www.milanofinanza.it/" target="_blank"><span style="color:#222;">Milano Finanza</span></a></p>
+                 <p><a href="http://www.ilfisco.it/" target="_blank"><span id="fisco" style="color:#222;">Il Fisco</span></a></p>
+                 <p><a href="http://www.finanzaefisco.it/" target="_blank"><span id="finaz" style="color:#222;">Finanza & Fisco</span></a></p>
+                 <p><a href="http://www.wsj.com/" target="_blank"><span style="color:#222;">Wall Street Journal</span></a></p>
+                 <p><a href="http://www.ft.com/" target="_blank"><span style="color:#222;">Financial Times</span></a></p>
+                 <p><a href="http://www.ansa.it/" target="_blank"><span style="color:#222;">ANSA</span></a></p>
+                 <p><a href="http://www.reuters.com/" target="_blank"><span style="color:#222;">Reuters</span></a></p>
+                 <p><a href="http://www.bloomberg.com/" target="_blank"><span style="color:#222;">Bloomberg</span></a></p>
+                 <p><a href="http://www.adnkronos.com/" target="_blank"><span style="color:#222;">Adnkronos</span></a></p>
+                 <p><a href="http://www.gazzettaufficiale.it/index.jsp" target="_blank"><span id="gazz" style="color:#222;">La Gazzetta Ufficiale</span></a></p>
+                 <p><a href="http://www.lastampa.it/" target="_blank"><span id="stamp" style="color:#222;">La Stampa</span></a></p>
+                 <p><a href="http://www.corriere.it/" target="_blank"><span id="corr" style="color:#222;">Il Corriere della Sera</span></a></p>
+                 <p><a href="http://www.repubblica.it/" target="_blank"><span id="repu" style="color:#222;">La Repubblica</span></a></p>
+                 <p><a href="http://www.eutekne.info/default.aspx" target="_blank"><span style="color:#222;">Eutekne</span></a></p>
+              </div>
+            </div>    
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{asset('web/bundles/frontend/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript">
+    </script>
+{% endblock %}

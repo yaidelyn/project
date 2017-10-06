@@ -1,0 +1,19 @@
+ # This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: db_sanna
+    database_user: root
+    database_password:
+    mailer_transport: smtp
+    encryption: ssl
+    mailer_host: esm12.siteground.biz
+    mailer_port: 465
+    mailer_user: admin@studiopierpaolosanna.it
+    mailer_password: Admin1qazse4
+    locale: it
+    secret: 77972e78e7968153fcd9b1fc5fa75f18
+    debug_toolbar: true
+    debug_redirects: false
+    use_assetic_controller: true

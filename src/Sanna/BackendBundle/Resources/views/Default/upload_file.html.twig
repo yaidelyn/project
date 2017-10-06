@@ -1,0 +1,445 @@
+{% extends '::backend.html.twig' %}
+{% block title %}Administrator{% endblock %}
+  {%  block stylesheets %}
+      {{ parent() }}
+      <link rel="stylesheet" type="text/css" href="{{asset('bundles/backend/js/select2/select2.min.css')}}" />
+      <!-- FUELUX TREE -->
+      <link rel="stylesheet" type="text/css" href="{{asset('bundles/backend/js/fuelux-tree/fuelux.min.css')}}" />
+      <link rel="stylesheet" href="{{asset('bundles/backend/css/zTreeStyle/zTreeStyle.css')}}" type="text/css">
+      <style type="text/css">
+          .ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
+      </style>
+  {%  endblock %}
+ {% block javascripts %}
+    {{ parent() }}
+     <!-- SELECT2 -->
+     <script type="text/javascript" src="{{asset('bundles/backend/js/select2/select2.min.js')}}"></script>
+     <!-- ZTREE -->
+     <script type="text/javascript" src="{{asset('bundles/backend/js/jTree/jquery.ztree.core.js')}}"></script>
+     <script type="text/javascript" src="{{asset('bundles/backend/js/jTree/jquery.ztree.excheck.js')}}"></script>
+     <script type="text/javascript" src="{{asset('bundles/backend/js/jTree//jquery.ztree.exedit.js')}}"></script>
+     <script>
+        var setting = {
+            view: {
+                //addHoverDom: addHoverDom,
+                removeHoverDom: removeHoverDom,
+                selectedMulti: false
+            },
+            edit: {
+                enable: true,
+                editNameSelectAll: true,
+                showRemoveBtn: showRemoveBtn,
+                showRenameBtn: showRenameBtn
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                beforeDrag: beforeDrag,
+                /*beforeEditName: beforeEditName,
+                beforeRename: beforeRename,*/
+                beforeRemove: beforeRemove,
+                onRemove: onRemove
+                //onRename: onRename
+             }
+        };
+
+        function downloadFile(user, file){
+            var url = "{{asset('web/upload/files/')}}";
+            //window.location.href = url + user +'/'+ file;
+            var save = document.createElement('a');
+            save.href = url + user +'/'+ file;
+            save.target = '_blank';
+            save.download = file || 'unknown';
+			
+			//Send Email
+			var data = {
+					'user':user,
+					'file':file
+				};
+				 $.ajax({
+                        type: "POST",
+                        url: "{{path('send_mail_doc')}}",
+                        data:{data:data},
+                        dataType:"json",                        
+                        success: function(response) {
+							 //jAlert(response.mensaje, 'Alert Dialog');
+                        },
+                        complete: function(data) {
+                            // end of ajax call
+                          // $.unblockUI();
+                        }
+                    });
+
+            var evt = new MouseEvent('click', {
+                'view': window,
+                'bubbles': true,
+                'cancelable': false
+            });
+            save.dispatchEvent(evt);
+           (window.URL || window.webkitURL).revokeObjectURL(save.href);
+        }
+        
+        var zNodes =[
+            { id:'a0', pId:0, name:"Document", open:true},
+        ];
+
+        var profiles = Array();
+        {% for data in result.data.profiles %}
+            profiles.push({
+                iduser: '{{ data.iduser }}',
+                fullname: '{{ data.fullname }}'
+            });
+        {% endfor %}
+
+        var files = {{ result.data.userfiles|json_encode|raw }};
+        var myFiles = eval('(' + files + ')');
+
+        var keys = {{ result.data.keys|json_encode|raw }};
+        var myKey = eval('(' + keys + ')');
+        console.log(profiles);
+        var id = 1;
+        var m = 1;
+        var f = 1;
+        for (i = 0; i < myKey.length; i++) {
+            var cadena = "a"+id;
+            var name_data = ""+myKey[i]+"";
+            zNodes.push({id:cadena,pId:'a0',name:name_data});
+            array_nodes = myFiles[i][name_data];
+            keys = Object.keys(array_nodes);
+            var iduser = 0;
+            for (j = 0; j < profiles.length; j++) {
+                if (profiles[j].fullname == name_data){
+                    iduser = profiles[j].iduser;
+                    break;
+                }
+            }
+            for (x in keys){
+                zNodes.push({id:"folder"+f,pId:cadena,name:keys[x]});
+                for(pos in array_nodes[keys[x]]){
+                    myID = array_nodes[keys[x]][pos].id;
+                    myName=array_nodes[keys[x]][pos].file;
+                    zNodes.push({id: myID, pId:"folder"+f, name: myName, idUser: iduser, user: name_data, "click":"downloadFile($(this).parent().parent().parent().parent().parent().find('a').prop('title'), this.title);"});
+                }
+                f = (f + 1)+i;
+            }
+            id++;
+            //console.log(zNodes);
+        }
+
+        var log, className = "dark";
+        function beforeDrag(treeId, treeNodes) {
+            return false;
+        }
+        function beforeEditName(treeId, treeNode) {
+             className = (className === "dark" ? "":"dark");
+             showLog("[ "+getTime()+" beforeEditName ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+             var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+             zTree.selectNode(treeNode);
+             setTimeout(function() {
+                 if (confirm("Start node '" + treeNode.name + "' editorial status?")) {
+                     setTimeout(function() {
+                         zTree.editName(treeNode);
+                     }, 0);
+                 }
+             }, 0);
+             return false;
+        }
+        function beforeRemove(treeId, treeNode) {
+            var ultimo = 0;
+            if (treeNode.isFirstNode && treeNode.isLastNode) ultimo = 1;
+            //console.log(treeNode);
+            var data = { 'id': treeNode.id, 'iduser': treeNode.idUser, 'fullname': treeNode.user }
+            if (confirm("Sei sicuro di voler eliminare questo file?")){
+                $.ajax({
+                    type: "POST",
+                    url: "{{path('delete_file')}}",
+                    data:{data:data},
+                    dataType:"json",
+                    success: function(result) {
+                        if (ultimo == 1)
+                            location.reload();
+                        else if(result.code == 1){
+                            jAlert("Il File è stato rimosso correttamente", 'Dialog Alert');
+                        }
+                    }
+                });
+                return true;
+            }
+            else
+                return false;
+        }
+        function onRemove(e, treeId, treeNode) {
+            return false;
+        }
+        function beforeRename(treeId, treeNode, newName, isCancel) {
+             className = (className === "dark" ? "":"dark");
+             showLog((isCancel ? "<span style='color:red'>":"") + "[ "+getTime()+" beforeRename ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name + (isCancel ? "</span>":""));
+             if (newName.length == 0) {
+                 setTimeout(function() {
+                     var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                     zTree.cancelEditName();
+                     alert("Node name can not be empty.");
+                 }, 0);
+                 return false;
+             }
+             return true;
+        }
+        function onRename(e, treeId, treeNode, isCancel) {
+            showLog((isCancel ? "<span style='color:red'>":"") + "[ "+getTime()+" onRename ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name + (isCancel ? "</span>":""));
+        }
+        function showRemoveBtn(treeId, treeNode) {
+            if (treeNode.level == 3 && $("#user_rol").val() != 'ROLE_USER')
+                return true;
+            else
+                return false;
+        }
+        function showRenameBtn(treeId, treeNode) {
+            return false;
+        }
+        function showLog(str) {
+            if (!log) log = $("#log");
+            log.append("<li class='"+className+"'>"+str+"</li>");
+            if(log.children("li").length > 8) {
+                log.get(0).removeChild(log.children("li")[0]);
+            }
+        }
+        function getTime() {
+            var now= new Date(),
+                h=now.getHours(),
+                m=now.getMinutes(),
+                s=now.getSeconds(),
+                ms=now.getMilliseconds();
+            return (h+":"+m+":"+s+ " " +ms);
+        }
+
+        var newCount =0;
+        function addHoverDom(treeId, treeNode) {
+            //console.log(treeNode);
+             var sObj = $("#" + treeNode.tId + "_span");
+             if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+             var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+                     + "' title='add node' onfocus='this.blur();'></span>";
+             sObj.after(addStr);
+             var btn = $("#addBtn_"+treeNode.tId);
+             if (btn) btn.bind("click", function(){
+                 var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                 zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
+                 return false;
+             });
+        };
+        function removeHoverDom(treeId, treeNode) {
+             $("#addBtn_"+treeNode.tId).unbind().remove();
+         };
+         function selectAll() {
+             var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+             zTree.setting.edit.editNameSelectAll =  $("#selectAll").attr("checked");
+         }
+        jQuery(document).ready(function() {
+
+            $("#folder_select").select2({
+                placeholder: "Selezionare Folder",
+                allowClear: true
+            });
+
+            App.setPage("upload_file");  //Set current page
+            App.init(); //Initialise plugins and elements
+
+            $('.colnew').css('display','none');
+
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+
+            $("#user_select").select2({
+                placeholder: "Select user",
+                allowClear: true
+            });
+
+            function checkfile(sender) {
+                var validExts = new Array(".doc", ".docx", ".xls", ".xlsx", ".pdf",".jpeg",".jpg",".tif");
+                var fileExt = sender.val();
+                fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+                if (validExts.indexOf(fileExt) < 0) {
+                  //alert("Invalid file selected, it should be (doc, docx, xls, xlsx, pdf) types.");
+                  jAlert("Invalid file selected, it should be (doc, docx, xls, xlsx, pdf) types.", 'Dialog Alert');
+                  return false;
+                }
+                else return true;
+            }
+
+            //functio upload
+            $('.btn-success').click(function(e) {
+                var file = $(document).find('input[type="file"]');
+                var individual_file = file[0].files[0];
+                if ($("#user_select").val() != '' && individual_file != undefined){
+                    e.preventDefault();
+                    if (checkfile($('#mfile')))
+                    {
+                        var fd = new FormData();
+                        fd.append("file", individual_file);
+                        fd.append("users",$('#user_select').val());
+                        fd.append("namefile",$('#namefile').val());
+                        fd.append("namefolder",$('#namefolder').val());
+                        fd.append("oldfolder",$('#folder_select').val());
+                        fd.append("new",$('#nuovo').val());
+
+                        $.ajax({
+                            type: "POST",
+                            url: "{{path('upload_file')}}",
+                            data:fd,
+                            contentType: false,
+                            processData: false,
+                            beforeSend:function(){
+                                var text = ' <img src="{{asset('bundles/backend/img')}}/1.gif"> Loading...';
+                                $('#loading').html("");
+                                $('#loading').html(text);
+                            },
+                            success: function(response) {
+                                var html = "Choose File... <input type=\"file\" class=\"mfile\" name=\"file_source\" onchange='$(\"#mfile\").val($(this).val())'>";
+                                $('#loading').html(html);
+                                $('#fupload')[0].reset();
+                                $(".select2-choices li.select2-search-choice").each(function(){
+                                    $(this).remove();
+                                });
+                             location.reload();
+                            }
+                        });
+                    }
+                }
+            });
+
+            //handleTree();
+            //loadData();
+            $("#nuovo").click(function(){
+                if($(this).is(':checked')){
+                    $('.colold').css('display','none');
+                    $('.colnew').css('display','block');
+                    $(this).val(0);
+                } else{
+                    $('.colold').css('display','block');
+                    $('.colnew').css('display','none');
+                    $(this).val(1);
+                }
+            });
+			
+			var sendMailDoc = function(user,file){
+			//alert('Holaaaaa');
+			}
+        });
+     </script>
+  {% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header">
+                <!-- BREADCRUMBS -->
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{ path('Base_site') }}">Home</a>
+                    </li>
+                    <li>Files</li>
+                </ul>
+                <!-- /BREADCRUMBS -->
+                <div class="clearfix">
+                    <h3 class="content-title pull-left">
+					{% if is_granted('ROLE_ADMIN') %}	
+						Caricare un File					
+					{% else %}
+						Vedi il File	
+					{% endif %}
+					</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CONTENT-->
+    <div class="row">
+        <div class="col-md-6 display-action">
+            <div class="box border primary">
+                <div class="box-title">
+                    <h4><i class="fa fa-bars"></i>Caricare un File</h4>
+                </div>
+                <div class="box-body big">
+                    <form id="fupload" class="form-horizontal" action="#" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Utente</label>
+                            <div class="col-md-9">
+                                <select multiple name="user" id="user_select" class="col-md-12" required>
+                                    <option></option>
+                                    {% for data in result.data.profiles %}
+                                        {<option value="{{ data.iduser }}">{{ data.fullname }}</option>}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nome File</label>
+                            <div class="col-sm-9">
+                                <input name="namefile" id="namefile" class="form-control" placeholder="Name file" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nome Cartella</label>
+                            <div class="col-md-2" style="padding-right:0;">
+                                <label class="checkbox"><input type="checkbox" name="nuovo" id="nuovo" class="uniform" value="1" style="margin-top:2px;">Nuovo</label>
+                            </div>
+                            <div class="col-sm-7 colold">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span id="d_ll"></span>
+                                        {% if  result.data.folder is defined %}
+                                        <select multiple name="folder" id="folder_select" class="col-md-12" required>
+                                            <option></option>
+                                            {% for data in result.data.folder %}
+                                                {<option value="{{ data.name_folder }}">{{ data.name_folder }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7 colnew">
+                                <input name="namefolder" id="namefolder" class="form-control" placeholder="Name folder" type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Caricare un File</label>
+                            <div class="col-sm-6">
+                                <input type="text" value="" name="mfile" id="mfile" class="form-control" readonly>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="btnfile" style="margin-left:-14px;">
+                                    <a id="loading" class='btn btn-primary btn-file' href='javascript:;'>
+                                        Selezionare File...
+                                        <input type="file" name="file_source" class="mfile" style="left:0px;width:calc(100% - 15px);" onchange='$("#mfile").val($(this).val());'>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:-14px;">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-success">Inviare</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box border green">
+                <div class="box-title">
+                    <h4><i class="fa fa-sitemap"></i>Files</h4>
+                </div>
+                <div class="box-body">
+                    <ul id="treeDemo" class="ztree"></ul>
+                    <!--div id="tree3" class="tree"></div-->
+                </div>
+            </div>
+        </div>
+    </div>
+	<input type="hidden" id="user_rol" value="{{ result.data.user.rol }}" />
+{% endblock %}
+

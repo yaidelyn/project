@@ -1,0 +1,196 @@
+{% extends '::backend.html.twig' %}
+{% block title %}Inbox{% endblock %}
+  {%  block stylesheets %}
+      {{ parent() }}
+      <!-- UNIFORM -->
+      <link rel="stylesheet" type="text/css" href="{{asset('web/bundles/backend/js/uniform/css/uniform.default.min.css')}}" />
+      <!-- INBOX CSS -->
+      <link rel="stylesheet" href="{{asset('web/bundles/backend/css/inbox.css')}}">
+  {%  endblock %}
+ {% block javascripts %}
+    {{ parent() }}
+     <!-- DATE RANGE PICKER -->
+     <script src="{{asset('web/bundles/backend/js/bootstrap-daterangepicker/moment.min.js')}}"></script>
+     <script src="{{asset('web/bundles/backend/js/bootstrap-daterangepicker/daterangepicker.min.js')}}"></script>
+     <!-- SLIMSCROLL -->
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js')}}"></script>
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js')}}"></script>
+     <!-- BLOCK UI -->
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/jQuery-BlockUI/jquery.blockUI.min.js')}}"></script>
+     <!-- UNIFORM -->
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/uniform/jquery.uniform.min.js')}}"></script>
+        <!-- BOOTSTRAP WYSIWYG -->
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/bootstrap-wysiwyg/jquery.hotkeys.min.js')}}"></script>
+     <script type="text/javascript" src="{{asset('web/bundles/backend/js/bootstrap-wysiwyg/bootstrap-wysiwyg.min.js')}}"></script>
+     <script src="{{asset('web/bundles/backend/js/inbox.js')}}"></script>
+     <script>
+         jQuery(document).ready(function() {
+             App.setPage("inbox");  //Set current page
+             App.init(); //Initialise plugins and elements
+             Inbox.init();
+         });
+     </script>
+  {% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header">
+                <!-- BREADCRUMBS -->
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{ path('Base_site') }}">Home</a>
+                    </li>
+                </ul>
+                <!-- /BREADCRUMBS -->
+                <div class="clearfix">
+                    <h3 class="content-title pull-left">Inbox</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- INBOX -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BOX -->
+            <div class="box border">
+                <div class="box-title">
+                    <h4><i class="fa fa-envelope"></i>Email</h4>
+                    <div class="tools">
+                        <a href="#box-config" data-toggle="modal" class="config">
+                            <i class="fa fa-cog"></i>
+                        </a>
+                        <a href="javascript:;" class="reload">
+                            <i class="fa fa-refresh"></i>
+                        </a>
+                        <a href="javascript:;" class="collapse">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a href="javascript:;" class="remove">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <!-- TOP ROW -->
+                        <div class="emailHeader row">
+                            <div class="emailTitle">
+                                <div class="col-md-2">
+                                    <img class="img-responsive pull-left" alt="Cloud Admin Logo" src="img/logo/logo-alt.png">
+                                </div>
+                                <div class="col-md-10">
+                                    <form class="form-inline hidden-xs" action="index.html">
+                                        <div class="input-group input-medium">
+                                            <input type="text" class="form-control" placeholder="Search Inbox">
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                                                </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- /TOP ROW -->
+                        <hr>
+                        <!-- INBOX -->
+                        <div class="row email">
+                            <div id="list-toggle" class="col-md-2">
+                                <ul class="list-unstyled">
+                                    <li class="composeBtn">
+                                        <a href="javascript:;" data-title="Compose" class="btn btn-danger">
+                                            Compose
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="emailNav nav nav-pills nav-stacked margin-bottom-10">
+                                    <li class="inbox active" >
+                                        <a href="{{ path('inbox_email') }}" data-title="Inbox">
+                                            <i class="fa fa-inbox fa-fw"></i> Inbox
+                                        </a>
+                                    </li>
+                                    <li class="starred">
+                                        <a href="javascript:;" data-title="Starred">
+                                            <i class="fa fa-star fa-fw"></i> Starred
+                                        </a>
+                                    </li>
+                                    <li class="sent">
+                                        <a href="javascript:;"  data-title="Sent">
+                                            <i class="fa fa-mail-forward fa-fw"></i> Sent Items
+                                        </a>
+                                    </li>
+                                    <li class="draft">
+                                        <a href="javascript:;" data-title="Draft">
+                                            <i class="fa fa-files-o fa-fw"></i> Drafts
+                                        </a>
+                                    </li>
+                                    <li class="spam">
+                                        <a href="javascript:;" data-title="Spam">
+                                            <i class="fa fa-ban fa-fw"></i> Spam
+                                        </a>
+                                    </li>
+                                    <li class="trash">
+                                        <a href="javascript:;" data-title="Trash">
+                                            <i class="fa fa-trash-o fa-fw"></i> Trash
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="emailContent">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="4">
+                                                <input type="checkbox">
+                                                <a class="btn btn-light-grey" href="#"><i class="fa fa-refresh fa-lg"></i></a>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-light-grey dropdown-toggle" data-toggle="dropdown"> More
+                                                        <i class="fa fa-caret-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu context" role="menu">
+                                                        <!--li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
+                                                        <li><a href="#"><i class="fa fa-ban"></i> Report Spam</a></li-->
+                                                        <li><a id="del_messagge" href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </th>
+                                            <th colspan="3">
+                                                <!--div class="btn-group pull-right">
+                                                    <button class="btn btn-light-grey dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="fa fa-cog fa-lg"></i> <i class="fa fa-caret-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu context" role="menu">
+                                                        <li><a href="#"><i class="fa fa-cogs"></i> Settings</a></li>
+                                                        <li><a href="#"><i class="fa fa-desktop"></i> Configure Inbox</a></li>
+                                                        <li><a href="#"><i class="fa fa-exclamation"></i> Help</a></li>
+                                                    </ul>
+                                                </div-->
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for data in result.data.email %}
+                                            <tr id="{{ data.id }}">
+                                                <td class="width-10">
+                                                    <input id="{{ data.id }}"  type="checkbox">
+                                                </td>
+                                                <td class="width-10"><i class="fa fa-star"></i></td>
+                                                <td class="viewEmail  width-10"></td>
+                                                <td class="viewEmail  hidden-xs">{{ data.fromAddress }}</td>
+                                                <td class="viewEmail "><!--span class="label label-success">New</span--->{{ data.subject }} </td>
+                                                <td class="viewEmail  text-right">{{ data.date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /INBOX -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

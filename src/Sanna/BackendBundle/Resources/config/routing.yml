@@ -1,0 +1,43 @@
+Base_site:
+    pattern: /
+    defaults: { _controller: BackendBundle:Default:index }
+
+admin_site:
+    pattern: /index
+    defaults: { _controller: BackendBundle:Default:admin }
+
+inbox_email:
+    pattern: /inbox
+    defaults: { _controller: BackendBundle:Email:inbox }
+
+view_inbox:
+    pattern: /inbox_main
+    defaults: { _controller: BackendBundle:Email:viewInbox }
+
+show_message:
+    pattern: /show_message
+    defaults: { _controller: BackendBundle:Email:viewMessage }
+
+delete_message:
+    pattern: /delete_message
+    defaults: { _controller: BackendBundle:Email:deleteMail }
+
+compose_message:
+    pattern: /compose_message
+    defaults: { _controller: BackendBundle:Email:composeEmail }
+
+upload_file:
+    pattern: /upload_file
+    defaults: { _controller: BackendBundle:Upload:upload }
+    
+delete_file:
+    pattern: /delete_file
+    defaults: { _controller: BackendBundle:Upload:delete }
+
+send_mail:
+    pattern: /send_mail
+    defaults: { _controller: BackendBundle:Email:sendMail }
+
+send_mail_doc:
+    pattern: /send_mail_doc
+    defaults: { _controller: BackendBundle:Upload:sendEmailDoc }

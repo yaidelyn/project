@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<datos>
+  <menu>
+    <home>Home</home>
+    <chisiamo>Chi siamo</chisiamo>
+    <servizi>Servizi</servizi>
+    <links>Links</links>
+    <contatti>Contatti</contatti>
+  </menu>
+  <body>
+    <chisi>Chi siamo</chisi>
+    <serv>Servizi</serv>
+    <leggi>Leggi tutto</leggi>
+    <consulenza>CONSULENZA</consulenza>
+    <cons>Consulenza</cons>
+    <cons1>Consulenza societaria</cons1>
+    <consdesc1>Lo studio garantisce la necessaria consulenza societaria e l’adeguata assistenza nella costituzione di nuove società, nella revisione dei patti...</consdesc1>
+    <consdesc1a>Lo studio garantisce la necessaria consulenza societaria e l’adeguata assistenza nella costituzione di nuove società, nella revisione dei patti sociali e delle clausole statutarie, nell’elaborazione del bilancio di esercizio ed eventuale nota integrativa e dei bilanci infrannuali, nella predisposizione di tutte le tipologie di contratti, nelle operazioni di fusione, scissione, trasformazione, conferimento e altre operazioni straordinarie, nelle trattative tra soci e tra società diverse, nell’esecuzione di due diligence per acquisizione di aziende o rami d’azienda, nella creazione o revisione di accordi parasociali, nella liquidazione e nello scioglimento di società, nell’istituzione e gestione di trust e fiduciarie, nell’istituzione di holding e gruppi societari, nelle procedure fallimentari e concorsuali in genere.</consdesc1a>
+    <cons2>Consulenza tributaria</cons2>
+    <consdesc2>Questa area racchiude una serie di attività tra cui si possono citare la consulenza nella programmazione fiscale in materia di imposte dirette...</consdesc2>
+    <consdesc2a>Questa area racchiude una serie di attività tra cui si possono citare la consulenza nella programmazione fiscale in materia di imposte dirette e indirette, nell’elaborazione di dichiarazioni fiscali (mod. Unico, dichiarazione Irap e Studi di Settore), nell’accertamento e nei controlli da parte dell’Amministrazione Finanziaria e più in generale nel contenzioso tributario, nel condono fiscale e nelle varie forme di sanatorie, nell’informazione sulle novità fiscali, nell’analisi delle differenze di tassazione tra paese d’origine e paesi esteri, nell’analisi delle convenzioni internazionali.</consdesc2a>
+    <cons3>Consulenza finanziaria all'azienda</cons3>
+    <consdesc3>Questa area può comprendere una serie di attività tra cui a titolo esemplificativo si richiamano...</consdesc3>
+    <consdesc3a>Questa area può comprendere una serie di attività tra cui a titolo esemplificativo si richiamano l’assistenza nell’ottenimento di fidi e finanziamenti dagli istituti di credito e dalle società di leasing, nell’esame degli strumenti alternativi di finanziamento, nell’elaborazione di piani finanziari e di piani di sostenibilità degli investimenti, nella gestione finanziaria aziendale di routine (con strumenti di rendiconto finanziario, di gestione dei flussi finanziari, ecc...), nella gestione dei rapporti con gli istituti di credito e nell’ottenimento di riduzioni di costi per commissioni ed oneri finanziari, nella pianificazione della strategia finanziaria.</consdesc3a>
+    <cons4>Revisione contabile-legale e consulenza contabile</cons4>
+    <consdesc4>Questa area comprende l’attività di revisione contabile e legale tipica del collegio sindacale o organo di...</consdesc4>
+    <consdesc4a>Questa area comprende l’attività di revisione contabile e legale tipica del collegio sindacale o organo di revisione e controllo, l’attività di vigilanza ex. D.L. 231/2001, pareri sulla correttezza delle scritture contabili e la consulenza sull’impianto di un sistema di contabilità (individuazione del software adeguato, creazione piano dei conti e impostazione delle procedure contabili).</consdesc4a>
+    <organiz>L'organizzazione del nostro studio commercialista</organiz>
+    <organiz1>Lo studio Commercialista Dr. Pierpaolo Sanna si pone l’obbiettivo di offrire al cliente tutte le prestazioni che rientrano nell’attività tipica dei commercialisti e cioè:</organiz1>
+    <organiz2>bilanci, diritto commerciale, revisione e certificazione contabile, diritto tributario, gestione della crisi aziendale, diritto fallimentare, discipline aziendalistiche, diritto privato.</organiz2>
+    <organiz3>Offriamo una serie di servizi aggiuntivi, quali ad esempio la</organiz3>
+    <organiz4>tenuta della contabilità, l'elaborazione dei cedolini paga, l'impianto della contabilità industriale, l'analisi finanziaria, la redazione di budget e di piani industriali</organiz4>
+    <organiz5>Lo studio commercialista è organizzato con tecnologie informatiche e multimediali sia per la tenuta della contabilità che per il disbrigo di ogni pratica nonché per ricerche nelle banche dati su Internet; lo Studio mette a disposizione dei propri clienti un'area riservata e attraverso questo spazio protetto l'utente può consultare le proprie cicolari e documenti nella massima sicurezza e riservatezza delle informazioni.</organiz5>
+    <ofert>Servizi offerti</ofert>
+    <ofert1>- Assistenza alla costituzione e nelle modifiche dei regolamenti sociali.</ofert1>
+    <ofert2>- Assistenza alla contrattualistica societaria.</ofert2>
+    <ofert3>- Assistenza alle trattative societarie.</ofert3>
+    <ofert4>- Esecuzione operazioni straordinarie (fusioni, scissioni, trasformazioni, conferimenti).</ofert4>
+    <ofert5>- Consulenza negli accordi parasociali.</ofert5>
+    <ofert6>- Assistenza nella liquidazione e scioglimento societari.</ofert6>
+    <ofert7>- Consulenza nell'istituzione di trust e fiduciarie.</ofert7>
+    <ofert8>- Consulenza nella creazione di holding e di gruppi societari.</ofert8>
+    <ofert9>- Assistenza alle dichiarazioni fiscali e agli studi di settore.</ofert9>
+    <ofert10>- Assistenza e informazione per le novità nelle imposte dirette e indirette.</ofert10>
+    <ofert11>- Assistenza nei contenziosi tributari.</ofert11>
+    <ofert12>- Consulenza per condoni e sanatorie.</ofert12>
+    <ofert13>- Analisi delle differenze di tassazione tra paese d’origine e paesi esteri.</ofert13>
+    <ofert14>- Analisi delle convenzioni internazionali.</ofert14>
+    <ofert15>- Consulenza nell’ottenimento di fidi e finanziamenti dagli istituti di credito.</ofert15>
+    <ofert16>- Esame strumenti alternativi di finanziamento presenti sul mercato.</ofert16>
+    <ofert17>- Elaborazione di piani finanziari e sostenibilità degli investimenti.</ofert17>
+    <ofert18>- Pianificazione della strategia finanziaria, diagnosi e controllo della struttura finanziaria aziendale.</ofert18>
+    <ofert19>- Finanziamento progetti.</ofert19>
+    <ofert20>- Analisi e revisione dei bilanci.</ofert20>
+    <ofert21>- Revisione dei conti e delle procedure.</ofert21>
+    <ofert22>- Ruolo di sindaci e revisori.</ofert22>
+    <ofert23>- Incarico di vigilanza ex D.L. 231/2001.</ofert23>
+    <ofert24>- Stesura di bilanci di esercizio.</ofert24>
+    <ofert25>- Stesura note integrative.</ofert25>
+    <title1>Contabilita'</title1>
+    <title2>Analisi di bilancio e controllo di gestione</title2>
+    <title3>Area finanziamenti e contributi a fondo perduto</title3>
+    <title4>Servizi inerenti gli sportelli pubblici</title4>
+    <title5>Servizi fiscali</title5>
+    <title6>Altri servizi</title6>
+    <title7>Area riservata</title7>
+    <cont1>Questa spazio include una serie di attività tra cui la tenuta della contabilità semplificata, tenuta della contabilità ordinaria, la gestione del libro dei cespiti ammortizzabili, l'assistenza alla tenuta della contabilità da parte del'azienda</cont1>
+    <cont2>ivi compresi i suggerimenti in merito a programmi gestionali di contabilità.</cont2>
+    <analisi1>Questo spazio comprende: analisi previsionali ed elaborazione di budget, controllo andamentale con situazioni di bilancio infrannuali, analisi degli scostamenti</analisi1>
+    <analisi2>riclassificazioni e analisi di bilancio con indici, valutazione rating aziendale (conforme a Basilea2).</analisi2>
+    <area1>Lo Studio si occupa di esporre e istruire pratiche di finanziamento a fondo perduto e di agevolazioni alle imprese sia già in attività che di nuova costituzione</area1>
+    <area2>I finanziamenti a fondo perduto sono dei prestiti diretti a particolari tipi di persone (giovani, donne, disoccupati...) che hanno intenzione di avviare una attività di impresa che rientra in una ben determinata categoria. Tali agevolazioni una volta acquisiti non vengono restituiti alla regione che li ha erogati, da cui a punto la dicitura "a fondo perduto". Lo Studio, oltre si occupa di istruire tali pratiche oltre a quelle di finanziamento a tasso agevolato per determinate categorie d’imprese.</area2>
+    <serv1>Questo spazio racchiude: l'assistenza per l'avvio di nuove attività commerciali, industriali, artigianali e professionali</serv1>
+    <serv2>(presso gli Sportelli Unici), le pratiche amministrative, autorizzazioni, licenze e permessi, le visure e certificazioni camerali, la gestione pratiche presso Ufficio Iva, Camera di Commercio, Ufficio Inps, Ufficio Inail, Ufficio del Lavoro.</serv2>
+    <fisca1>Questo spazio include una serie di attività tra cui a titolo esemplificativo si citano: l’elaborazione dichiarazioni</fisca1>
+    <fisca2>dei redditi 730, Unico persone fisiche, Unico società di persone, Unico società di capitali, Irap, comunicazione annuale dati Iva, dichiarazione Iva annuale, elenchi clienti fornitori, elenchi black list, elenchi operazioni intracomunitarie, elaborazione 770, dichiarazione IMU, trasmissione telematica F24.</fisca2>
+    <altri>Quest'area comprende ad esempio la domiciliazione di società di capitali ed enti non commerciali.</altri>
+    <riser1>Accesso riservato ai soli clienti in possesso di username e password; attraverso questo spazio protetto l'utente può consultare i propri dati e documenti nella massima sicurezza e riservatezza delle informazioni</riser1>
+    <riser2>Per abilitarvi al servizio e richiedere la password</riser2>
+    <riser3>clicca qui.</riser3>
+    <enti>Enti e Istituzioni</enti>
+    <justi>Ministero della Giustizia</justi>
+    <econ>Ministero dell'Economia e delle Finanze</econ>
+    <lavo>Ministero del Lavoro</lavo>
+    <prod>Ministero delle attività produttive</prod>
+    <comm>Camere commercio Italiane</comm>
+    <cvco>Camera di Commercio del VCO</cvco>
+    <cagli>Comune di Cagliari</cagli>
+    <prov>Provincia di Cagliari</prov>
+    <regi>Regione Sardegna</regi>
+    <entra>Agenzia delle Entrate</entra>
+    <banc>Banca d'Italia</banc>
+    <nazi>CCIAA Nazionale</nazi>
+    <ordi>Ordini professionali</ordi>
+    <dott>Consiglio Nazionale Dottori Commercialisti e degli Esperti Contabili</dott>
+    <ordi>Ordine dei Dottori Commercialisti di Cagliari</ordi>
+    <union>Unione Giovani Dottori Commercialisti</union>
+    <consi>Consiglio Nazionale Consulenti del Lavoro</consi>
+    <nota>Consiglio Nazionale del Notariato</nota>
+    <degli>Consiglio Nazionale degli Avvocati</degli>
+    <affa>Piazza Affari</affa>
+    <parl>Parlamento</parl>
+    <parla>Parlamento Italiano</parla>
+    <depu>Camera dei Deputati</depu>
+    <sena>Senato</sena>
+    <borse>Borse internazionali</borse>
+    <infom>L'informazione</infom>
+    <sole>Il sole 24 Ore</sole>
+    <oggi>Italia Oggi</oggi>
+    <fisco>Il Fisco</fisco>
+    <finaz>Finanza e Fisco</finaz>
+    <gazz>La Gazzetta Ufficiale</gazz>
+    <stamp>La Stampa</stamp>
+    <corr>Il Corriere della Sera</corr>
+    <repu>La Repubblica</repu>
+    <sname>Nome</sname>
+    <slastname>Cognome</slastname>
+    <smessage>Messaggio</smessage>
+    <ssend>Inviare</ssend>
+  </body>
+  <footer>
+    <mcontact>Contatti</mcontact>
+    <address>Indirizo</address>
+  </footer>
+</datos>
